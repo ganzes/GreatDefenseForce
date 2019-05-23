@@ -35,34 +35,36 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/gameGDFsource/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="701">
-              <caret line="155" column="11" lean-forward="true" selection-start-line="155" selection-start-column="11" selection-end-line="155" selection-end-column="11" />
+            <state relative-caret-position="-700">
+              <caret line="194" column="11" lean-forward="true" selection-start-line="194" selection-start-column="11" selection-end-line="194" selection-end-column="11" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4417#4418#0" expanded="true" />
-                <element signature="e#4495#4496#0" expanded="true" />
-                <element signature="e#4644#4645#0" expanded="true" />
-                <element signature="e#4721#4722#0" expanded="true" />
-                <element signature="e#4986#4987#0" expanded="true" />
-                <element signature="e#5064#5065#0" expanded="true" />
-                <element signature="e#5213#5214#0" expanded="true" />
-                <element signature="e#5290#5291#0" expanded="true" />
-                <element signature="e#5847#5848#0" expanded="true" />
-                <element signature="e#5925#5926#0" expanded="true" />
-                <element signature="e#6074#6075#0" expanded="true" />
-                <element signature="e#6151#6152#0" expanded="true" />
-                <element signature="e#6433#6434#0" expanded="true" />
-                <element signature="e#6511#6512#0" expanded="true" />
-                <element signature="e#6660#6661#0" expanded="true" />
-                <element signature="e#6737#6738#0" expanded="true" />
-                <element signature="e#7019#7020#0" expanded="true" />
-                <element signature="e#7097#7098#0" expanded="true" />
-                <element signature="e#7246#7247#0" expanded="true" />
-                <element signature="e#7323#7324#0" expanded="true" />
-                <element signature="e#7605#7606#0" expanded="true" />
-                <element signature="e#7683#7684#0" expanded="true" />
-                <element signature="e#7832#7833#0" expanded="true" />
-                <element signature="e#7909#7910#0" expanded="true" />
+                <element signature="e#1273#1274#0" expanded="true" />
+                <element signature="e#1373#1374#0" expanded="true" />
+                <element signature="e#5993#5994#0" expanded="true" />
+                <element signature="e#6071#6072#0" expanded="true" />
+                <element signature="e#6219#6220#0" expanded="true" />
+                <element signature="e#6296#6297#0" expanded="true" />
+                <element signature="e#6561#6562#0" expanded="true" />
+                <element signature="e#6639#6640#0" expanded="true" />
+                <element signature="e#6787#6788#0" expanded="true" />
+                <element signature="e#6864#6865#0" expanded="true" />
+                <element signature="e#7129#7130#0" expanded="true" />
+                <element signature="e#7207#7208#0" expanded="true" />
+                <element signature="e#7355#7356#0" expanded="true" />
+                <element signature="e#7432#7433#0" expanded="true" />
+                <element signature="e#7697#7698#0" expanded="true" />
+                <element signature="e#7775#7776#0" expanded="true" />
+                <element signature="e#7923#7924#0" expanded="true" />
+                <element signature="e#8000#8001#0" expanded="true" />
+                <element signature="e#8265#8266#0" expanded="true" />
+                <element signature="e#8343#8344#0" expanded="true" />
+                <element signature="e#8491#8492#0" expanded="true" />
+                <element signature="e#8568#8569#0" expanded="true" />
+                <element signature="e#8833#8834#0" expanded="true" />
+                <element signature="e#8911#8912#0" expanded="true" />
+                <element signature="e#9059#9060#0" expanded="true" />
+                <element signature="e#9136#9137#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -71,12 +73,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/gameGDFsource/gdfmain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-36">
-              <caret line="25" column="19" lean-forward="true" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+            <state>
+              <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#929#930#0" expanded="true" />
-                <element signature="e#987#988#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -85,8 +85,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/gameGDFsource/Turtorial.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+            <state relative-caret-position="825">
+              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -111,6 +111,7 @@
       <list>
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/gameGDFsource/Turtorial.java" />
+        <option value="$PROJECT_DIR$/src/main/java/gameGDFsource/HandleBall.java" />
         <option value="$PROJECT_DIR$/src/main/java/gameGDFsource/gdfmain.java" />
         <option value="$PROJECT_DIR$/src/main/java/gameGDFsource/Game.java" />
       </list>
@@ -250,17 +251,20 @@
       <workItem from="1558526681976" duration="717000" />
       <workItem from="1558532027461" duration="34515000" />
       <workItem from="1558571175444" duration="468000" />
-      <workItem from="1558604422947" duration="1453000" />
+      <workItem from="1558604422947" duration="2863000" />
+      <workItem from="1558610475294" duration="1344000" />
+      <workItem from="1558614676133" duration="9909000" />
+      <workItem from="1558625060533" duration="6769000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69748000" />
+    <option name="totallyTimeSpent" value="89180000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1592" y="-8" width="1936" height="1096" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12100213" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.124200426" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -269,7 +273,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32916668" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.26770833" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34791666" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -326,58 +330,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/gameGDFsource/Turtorial.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/gameGDFsource/HandleBall.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/gameGDFsource/gdfmain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+        <state>
+          <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/gameGDFsource/gdfmain.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/gameGDFsource/Turtorial.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-36">
-          <caret line="25" column="19" lean-forward="true" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+        <state relative-caret-position="825">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#929#930#0" expanded="true" />
-            <element signature="e#987#988#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gameGDFsource/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="701">
-          <caret line="155" column="11" lean-forward="true" selection-start-line="155" selection-start-column="11" selection-end-line="155" selection-end-column="11" />
+        <state relative-caret-position="-700">
+          <caret line="194" column="11" lean-forward="true" selection-start-line="194" selection-start-column="11" selection-end-line="194" selection-end-column="11" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4417#4418#0" expanded="true" />
-            <element signature="e#4495#4496#0" expanded="true" />
-            <element signature="e#4644#4645#0" expanded="true" />
-            <element signature="e#4721#4722#0" expanded="true" />
-            <element signature="e#4986#4987#0" expanded="true" />
-            <element signature="e#5064#5065#0" expanded="true" />
-            <element signature="e#5213#5214#0" expanded="true" />
-            <element signature="e#5290#5291#0" expanded="true" />
-            <element signature="e#5847#5848#0" expanded="true" />
-            <element signature="e#5925#5926#0" expanded="true" />
-            <element signature="e#6074#6075#0" expanded="true" />
-            <element signature="e#6151#6152#0" expanded="true" />
-            <element signature="e#6433#6434#0" expanded="true" />
-            <element signature="e#6511#6512#0" expanded="true" />
-            <element signature="e#6660#6661#0" expanded="true" />
-            <element signature="e#6737#6738#0" expanded="true" />
-            <element signature="e#7019#7020#0" expanded="true" />
-            <element signature="e#7097#7098#0" expanded="true" />
-            <element signature="e#7246#7247#0" expanded="true" />
-            <element signature="e#7323#7324#0" expanded="true" />
-            <element signature="e#7605#7606#0" expanded="true" />
-            <element signature="e#7683#7684#0" expanded="true" />
-            <element signature="e#7832#7833#0" expanded="true" />
-            <element signature="e#7909#7910#0" expanded="true" />
+            <element signature="e#1273#1274#0" expanded="true" />
+            <element signature="e#1373#1374#0" expanded="true" />
+            <element signature="e#5993#5994#0" expanded="true" />
+            <element signature="e#6071#6072#0" expanded="true" />
+            <element signature="e#6219#6220#0" expanded="true" />
+            <element signature="e#6296#6297#0" expanded="true" />
+            <element signature="e#6561#6562#0" expanded="true" />
+            <element signature="e#6639#6640#0" expanded="true" />
+            <element signature="e#6787#6788#0" expanded="true" />
+            <element signature="e#6864#6865#0" expanded="true" />
+            <element signature="e#7129#7130#0" expanded="true" />
+            <element signature="e#7207#7208#0" expanded="true" />
+            <element signature="e#7355#7356#0" expanded="true" />
+            <element signature="e#7432#7433#0" expanded="true" />
+            <element signature="e#7697#7698#0" expanded="true" />
+            <element signature="e#7775#7776#0" expanded="true" />
+            <element signature="e#7923#7924#0" expanded="true" />
+            <element signature="e#8000#8001#0" expanded="true" />
+            <element signature="e#8265#8266#0" expanded="true" />
+            <element signature="e#8343#8344#0" expanded="true" />
+            <element signature="e#8491#8492#0" expanded="true" />
+            <element signature="e#8568#8569#0" expanded="true" />
+            <element signature="e#8833#8834#0" expanded="true" />
+            <element signature="e#8911#8912#0" expanded="true" />
+            <element signature="e#9059#9060#0" expanded="true" />
+            <element signature="e#9136#9137#0" expanded="true" />
           </folding>
         </state>
       </provider>

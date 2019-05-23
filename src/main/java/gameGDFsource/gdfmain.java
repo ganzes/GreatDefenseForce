@@ -15,6 +15,11 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.layout.BorderPane;
 
 import java.awt.*;
 import java.util.Stack;
@@ -75,7 +80,8 @@ public class gdfmain extends Application {//zawsze extends Application, by zasto
         gridPrimaryStage.setBackground(background);
 
 
-        gridPrimaryStage.getChildren().addAll(button1, button2, button3, button4, button5);
+        gridPrimaryStage.getChildren().addAll(button1, button4, button5);
+
 
         button4.setOnAction(e -> {
             Turtorial turtoriaWindow = new Turtorial();
@@ -108,11 +114,15 @@ public class gdfmain extends Application {//zawsze extends Application, by zasto
         gridPrimaryStage.setVgap(40);
         gridPrimaryStage.setHgap(50);
 
+
+
+
         Scene scene = new Scene(gridPrimaryStage, 900, 500, Color.GREEN);
 
         primaryStage.setTitle("GFD");//tytul okna
         primaryStage.setScene(scene);
         primaryStage.show();
+
 
 
     }

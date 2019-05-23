@@ -4,6 +4,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Alert;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -20,6 +21,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -45,7 +47,6 @@ public class Game {
             this.buttonHandleBall = buttonHandleBall;
         }
 
-
         @Override
         public void handle(ActionEvent event) {
             //cialo metody
@@ -56,42 +57,47 @@ public class Game {
 
             Random random = new Random();
 
-            double playerMove = random.nextInt(100);
-            double computerMove = random.nextInt(100);
-
+            double playerMove = random.nextInt(101);
+            double computerMove = random.nextInt(101);
 
             if (playerMove < 10){//to powoduje, ze 10 procent szans, ze trafi w slupek
 
                 if (isPlayer){
-                    Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
-                    alert3.setTitle("You're magnificent shot resulted in... ");
-                    alert3.setContentText(" You've hitted a post!");
-                    alert3.showAndWait();
+                    Alert alertHumanGoalPost = new Alert(Alert.AlertType.INFORMATION);
+                    alertHumanGoalPost.setTitle("You're magnificent shot resulted in... ");
+                    alertHumanGoalPost.setContentText(" You've hit a post!");
+                    alertHumanGoalPost.showAndWait();
                 }
-
             }
 
             else if (computerMove < 40) {//poziom trudnosci komputera, ze pc zgadnie ruch gracza, wielkosc liczby okresla poziom trudnosci
                 if (isPlayer) {
-                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-                    alert2.setTitle("You're magnificent shot resulted in... ");
-                    alert2.setContentText(" you've missed... !");
-                    alert2.showAndWait();
+                    Alert alertHumanMissed = new Alert(Alert.AlertType.INFORMATION);
+                    alertHumanMissed.setTitle("You're magnificent shot resulted in... ");
+                    alertHumanMissed.setContentText(" You've missed... !");
+                    alertHumanMissed.showAndWait();
                 }
             }
 
             else{//60% szans na gol
                     if (isPlayer){
-                        Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-                        alert1.setTitle("You're magnificent shot resulted in... ");
-                        alert1.setContentText(" GOOOOOL !");
-                        alert1.showAndWait();
+                        Alert alertHumanGoal = new Alert(Alert.AlertType.INFORMATION);
+                        alertHumanGoal.setTitle("You're magnificent shot resulted in... ");
+                        alertHumanGoal.setContentText(" GOOOOAAL !");
+                        alertHumanGoal.showAndWait();
                     }
             }
 
             if (isPlayer && playerTurns >=5){
 
                 isPlayer = false;
+                Alert alertPCTurn = new Alert(Alert.AlertType.CONFIRMATION);
+                alertPCTurn.setTitle("Your turn has ended!");
+                alertPCTurn.setContentText("It's time for a Computer Player!");
+                alertPCTurn.showAndWait();
+
+
+
                 runComputer();
             }
         }
@@ -99,12 +105,55 @@ public class Game {
 
 private void runComputer(){
 
-
         for (int i=0; i<5; i++ ){//5 razy ta sama czynnosc, 5 tur dla computerPlayer
-            nGB1.fire();
+
+            Random randomButtonFire = new Random();
+            double randomSelectButton = randomButtonFire.nextInt(101);
+
+            //nGB1.fire();
+
+            if (randomSelectButton < 10){
+
+                Alert alertPCGoalPost = new Alert(Alert.AlertType.INFORMATION);
+                alertPCGoalPost.setTitle("Computer Player shot resulted in... ");
+                alertPCGoalPost.setContentText(" Computer Player hit the goal post !");
+                alertPCGoalPost.showAndWait();
+
+                String a = "Computer Player hit a Goal Poast!";
+                System.out.println(a);
+            }
+
+            else if (randomSelectButton < 40){
+                Alert alertPCGoal = new Alert(Alert.AlertType.INFORMATION);
+                alertPCGoal.setTitle("Computer Player shot resulted in... ");
+                alertPCGoal.setContentText(" Computer Player missed... !");
+                alertPCGoal.showAndWait();
+
+                System.out.println("Computer Player missed!");
+            }
+
+            else {
+                Alert alertPCMissed = new Alert(Alert.AlertType.INFORMATION);
+                alertPCMissed.setTitle("Computer Player shot resulted in... ");
+                alertPCMissed.setContentText(" Coputer Player scored! GOOOOAAL !");
+                alertPCMissed.showAndWait();System.out.println("Computer Player scored! GOOOOAAL !");
+            }
+
+            System.out.println(i);
         }
+
         isPlayer = true;
         playerTurns = 0;
+
+        if (isPlayer = true){
+
+            Alert alertPlayerTurn = new Alert(Alert.AlertType.CONFIRMATION);
+            alertPlayerTurn.setTitle("Computer Player Turn has ended!");
+            alertPlayerTurn.setContentText("It's time for a Human Player! Have fun!");
+            alertPlayerTurn.showAndWait();
+
+            System.out.println("Teraz gracz!");
+        }
 }
 
     private Button nGB1;
@@ -113,6 +162,7 @@ private void runComputer(){
     private Button nGB4;
     private Button nGB5;
     private Button nGB6;
+   // private Button nGB7;
 
     public void newGame() {
 
@@ -129,6 +179,8 @@ private void runComputer(){
 
         Stage newGameStage = new Stage();
         newGameStage.setTitle("New Game Started");
+        newGameStage.initModality(Modality.APPLICATION_MODAL);
+
 
         nGB1 = new Button();
         nGB1.setGraphic(new ImageView(buttonNeutral));//tak ustawiasz grafike buttona
@@ -138,7 +190,6 @@ private void runComputer(){
                 nGB1.setGraphic(new ImageView(buttonSelected));
             }
         });
-
         nGB1.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -154,7 +205,6 @@ private void runComputer(){
                 nGB2.setGraphic(new ImageView(buttonSelected));
             }
         });
-
         nGB2.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -170,14 +220,12 @@ private void runComputer(){
                 nGB3.setGraphic(new ImageView(buttonSelected));
             }
         });
-
         nGB3.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 nGB3.setGraphic(new ImageView(buttonNeutral));
             }
         });
-
 
         nGB4 = new Button();
         nGB4.setGraphic(new ImageView(buttonNeutral));//tak ustawiasz grafike buttona
@@ -187,14 +235,12 @@ private void runComputer(){
                 nGB4.setGraphic(new ImageView(buttonSelected));
             }
         });
-
         nGB4.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 nGB4.setGraphic(new ImageView(buttonNeutral));
             }
         });
-
 
         nGB5 = new Button();
         nGB5.setGraphic(new ImageView(buttonNeutral));//tak ustawiasz grafike buttona
@@ -204,14 +250,12 @@ private void runComputer(){
                 nGB5.setGraphic(new ImageView(buttonSelected));
             }
         });
-
         nGB5.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 nGB5.setGraphic(new ImageView(buttonNeutral));
             }
         });
-
 
         nGB6 = new Button();
         nGB6.setGraphic(new ImageView(buttonNeutral));//tak ustawiasz grafike buttona
@@ -221,13 +265,35 @@ private void runComputer(){
                 nGB6.setGraphic(new ImageView(buttonSelected));
             }
         });
-
         nGB6.setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 nGB6.setGraphic(new ImageView(buttonNeutral));
             }
         });
+
+       // nGB7 = new Button();
+
+
+        // create a menu
+        javafx.scene.control.Menu m = new javafx.scene.control.Menu("Menu");
+        // create menuitems
+        javafx.scene.control.MenuItem m1 = new javafx.scene.control.MenuItem("menu item 1");
+        javafx.scene.control.MenuItem m2 = new javafx.scene.control.MenuItem("menu item 2");
+        javafx.scene.control.MenuItem m3 = new javafx.scene.control.MenuItem("menu item 3");
+        // add menu items to menu
+        m.getItems().add(m1);
+        m.getItems().add(m2);
+        m.getItems().add(m3);
+        // create a menubar
+        javafx.scene.control.MenuBar mb = new MenuBar();
+        // add menu to menubar
+        mb.getMenus().add(m);
+
+        BorderPane borderPane = new BorderPane();
+        borderPane.setTop(mb);
+
+
 
         GridPane newGameGridPane = new GridPane();
         newGameGridPane.add(nGB1, 0, 0, 1, 1);
@@ -236,6 +302,7 @@ private void runComputer(){
         newGameGridPane.add(nGB4, 0, 1, 1, 1);
         newGameGridPane.add(nGB5, 1, 1, 1, 1);
         newGameGridPane.add(nGB6, 2, 1, 1, 1);
+       // newGameGridPane.add(nGB7, 1, 3, 1, 1);
         newGameGridPane.setAlignment(Pos.CENTER);
         newGameGridPane.setVgap(50);
         newGameGridPane.setHgap(150);
