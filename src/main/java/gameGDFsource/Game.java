@@ -25,8 +25,11 @@ import javafx.util.Duration;
 
 import javax.xml.soap.Text;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Stack;
+import java.util.stream.Stream;
 
 
 public class Game {
@@ -34,14 +37,9 @@ public class Game {
     private int playerTurns = 0;
     private boolean isPlayer = true;
 
-
     private class HandleBall implements EventHandler<ActionEvent>{
 
-
-
         private Button buttonHandleBall; //jako referencja, ze ktory to jest
-
-
 
         public HandleBall(Button buttonHandleBall) {//wiadomo, ktory przycisk to wywolal
             this.buttonHandleBall = buttonHandleBall;
@@ -89,7 +87,6 @@ public class Game {
                         alert1.setContentText(" GOOOOOL !");
                         alert1.showAndWait();
                     }
-
             }
 
             if (isPlayer && playerTurns >=5){
@@ -98,7 +95,6 @@ public class Game {
                 runComputer();
             }
         }
-
     }
 
 private void runComputer(){
@@ -107,10 +103,8 @@ private void runComputer(){
         for (int i=0; i<5; i++ ){//5 razy ta sama czynnosc, 5 tur dla computerPlayer
             nGB1.fire();
         }
-
         isPlayer = true;
         playerTurns = 0;
-
 }
 
     private Button nGB1;
@@ -154,15 +148,86 @@ private void runComputer(){
 
         nGB2 = new Button();
         nGB2.setGraphic(new ImageView(buttonNeutral));//tak ustawiasz grafike buttona
+        nGB2.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                nGB2.setGraphic(new ImageView(buttonSelected));
+            }
+        });
+
+        nGB2.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                nGB2.setGraphic(new ImageView(buttonNeutral));
+            }
+        });
 
         nGB3 = new Button();
         nGB3.setGraphic(new ImageView(buttonNeutral));//tak ustawiasz grafike buttona
+        nGB3.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                nGB3.setGraphic(new ImageView(buttonSelected));
+            }
+        });
+
+        nGB3.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                nGB3.setGraphic(new ImageView(buttonNeutral));
+            }
+        });
+
+
         nGB4 = new Button();
         nGB4.setGraphic(new ImageView(buttonNeutral));//tak ustawiasz grafike buttona
+        nGB4.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                nGB4.setGraphic(new ImageView(buttonSelected));
+            }
+        });
+
+        nGB4.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                nGB4.setGraphic(new ImageView(buttonNeutral));
+            }
+        });
+
+
         nGB5 = new Button();
         nGB5.setGraphic(new ImageView(buttonNeutral));//tak ustawiasz grafike buttona
+        nGB5.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                nGB5.setGraphic(new ImageView(buttonSelected));
+            }
+        });
+
+        nGB5.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                nGB5.setGraphic(new ImageView(buttonNeutral));
+            }
+        });
+
+
         nGB6 = new Button();
         nGB6.setGraphic(new ImageView(buttonNeutral));//tak ustawiasz grafike buttona
+        nGB6.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                nGB6.setGraphic(new ImageView(buttonSelected));
+            }
+        });
+
+        nGB6.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                nGB6.setGraphic(new ImageView(buttonNeutral));
+            }
+        });
 
         GridPane newGameGridPane = new GridPane();
         newGameGridPane.add(nGB1, 0, 0, 1, 1);
@@ -189,6 +254,5 @@ private void runComputer(){
         nGB6.setOnAction(new HandleBall(nGB6));
 
         //nGB1.fire();//od tego pc moze zaczac
-
     }
 }

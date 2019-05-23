@@ -26,6 +26,7 @@ public class gdfmain extends Application {//zawsze extends Application, by zasto
     Button button2;
     Button button3;
     Button button4;
+    Button button5;
 
     Image imageBackgroundPrimaryStage = new Image("tlo.jpg");
     //Image newGameBackgroundImageFile = new Image("tloNewGame.jpg");
@@ -55,6 +56,9 @@ public class gdfmain extends Application {//zawsze extends Application, by zasto
         button4 = new Button();
         button4.setText("Turtorial");
 
+        button5 = new Button();
+        button5.setText("Exit");
+
         //tutaj ustawiam sobie buttony PrimaryStage, ich pozycje
         GridPane.setRowIndex(button1, 0);
         GridPane.setColumnIndex(button1, 1);
@@ -64,12 +68,14 @@ public class gdfmain extends Application {//zawsze extends Application, by zasto
         GridPane.setColumnIndex(button3, 1);
         GridPane.setRowIndex(button4, 3);
         GridPane.setColumnIndex(button4, 1);
+        GridPane.setRowIndex(button5, 4);
+        GridPane.setColumnIndex(button5, 1);
 
         GridPane gridPrimaryStage = new GridPane();
         gridPrimaryStage.setBackground(background);
 
 
-        gridPrimaryStage.getChildren().addAll(button1, button2, button3, button4);
+        gridPrimaryStage.getChildren().addAll(button1, button2, button3, button4, button5);
 
         button4.setOnAction(e -> {
             Turtorial turtoriaWindow = new Turtorial();
@@ -89,11 +95,14 @@ public class gdfmain extends Application {//zawsze extends Application, by zasto
         //usowa mi z grida, ktory mi wyswietla elementy
 
         button1.setOnAction(event -> {
-            gridPrimaryStage.getChildren().removeAll(button1, button2, button3, button4);
+           // gridPrimaryStage.getChildren().removeAll(button1, button2, button3, button4);
             Game game = new Game();
             game.newGame();
         });
 
+        button5.setOnAction(event -> {
+            primaryStage.close();
+        });
 
         gridPrimaryStage.setAlignment(Pos.CENTER_LEFT);
         gridPrimaryStage.setVgap(40);
