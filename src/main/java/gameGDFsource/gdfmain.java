@@ -1,5 +1,9 @@
 package gameGDFsource;
 
+import javafx.animation.Animation;
+import javafx.animation.Interpolator;
+import javafx.animation.RotateTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -13,6 +17,9 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.Path;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.scene.control.Menu;
@@ -20,6 +27,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.BorderPane;
+import javafx.util.Duration;
 
 import java.awt.*;
 import java.util.Stack;
@@ -32,6 +40,8 @@ public class gdfmain extends Application {//zawsze extends Application, by zasto
     Button button3;
     Button button4;
     Button button5;
+
+    Image buttonSelected = new Image("ballSelected.jpg");
 
     Image imageBackgroundPrimaryStage = new Image("tlo.jpg");
     //Image newGameBackgroundImageFile = new Image("tloNewGame.jpg");
@@ -79,10 +89,6 @@ public class gdfmain extends Application {//zawsze extends Application, by zasto
         GridPane gridPrimaryStage = new GridPane();
         gridPrimaryStage.setBackground(background);
 
-
-        gridPrimaryStage.getChildren().addAll(button1, button4, button5);
-
-
         button4.setOnAction(e -> {
             Turtorial turtoriaWindow = new Turtorial();
             turtoriaWindow.turtorialWinMeth("Turtorial",
@@ -110,20 +116,28 @@ public class gdfmain extends Application {//zawsze extends Application, by zasto
             primaryStage.close();
         });
 
+        Circle circle = new Circle();
+        circle.setFill(new ImagePattern(buttonSelected));
+        circle.setRadius(50);
+
+        RotateTransition rotateBall = new RotateTransition(Duration.millis(3000), circle);
+        rotateBall.setByAngle(360);
+        rotateBall.setCycleCount(Animation.INDEFINITE);
+        rotateBall.setAutoReverse(false);
+        rotateBall.setInterpolator(Interpolator.LINEAR);
+        rotateBall.play();
+
         gridPrimaryStage.setAlignment(Pos.CENTER_LEFT);
-        gridPrimaryStage.setVgap(40);
-        gridPrimaryStage.setHgap(50);
-
-
-
+        gridPrimaryStage.setVgap(20);
+        gridPrimaryStage.setHgap(30);
+        GridPane.setColumnIndex(circle,0);
+        GridPane.setRowIndex(circle,0);
+        gridPrimaryStage.getChildren().addAll(button1, button4, button5, circle);
 
         Scene scene = new Scene(gridPrimaryStage, 900, 500, Color.GREEN);
 
         primaryStage.setTitle("GFD");//tytul okna
         primaryStage.setScene(scene);
         primaryStage.show();
-
-
-
     }
 }

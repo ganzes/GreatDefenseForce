@@ -3,6 +3,7 @@ package gameGDFsource;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.Alert;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.ToggleButton;
@@ -21,11 +22,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import javax.xml.soap.Text;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,11 +33,14 @@ import java.util.Random;
 import java.util.Stack;
 import java.util.stream.Stream;
 
-
 public class Game {
 
+    private int rounds = 0;
     private int playerTurns = 0;
     private boolean isPlayer = true;
+
+    private int userScore = 0;
+    private int computerScore = 0;
 
     private class HandleBall implements EventHandler<ActionEvent>{
 
@@ -81,22 +84,22 @@ public class Game {
 
             else{//60% szans na gol
                     if (isPlayer){
+                        userScore++;
                         Alert alertHumanGoal = new Alert(Alert.AlertType.INFORMATION);
                         alertHumanGoal.setTitle("You're magnificent shot resulted in... ");
                         alertHumanGoal.setContentText(" GOOOOAAL !");
                         alertHumanGoal.showAndWait();
                     }
+                    System.out.println("PUNKTY UZYTKOWNIKA "+userScore);
             }
 
             if (isPlayer && playerTurns >=5){
 
                 isPlayer = false;
-                Alert alertPCTurn = new Alert(Alert.AlertType.CONFIRMATION);
+                Alert alertPCTurn = new Alert(Alert.AlertType.WARNING);
                 alertPCTurn.setTitle("Your turn has ended!");
                 alertPCTurn.setContentText("It's time for a Computer Player!");
                 alertPCTurn.showAndWait();
-
-
 
                 runComputer();
             }
@@ -113,7 +116,6 @@ private void runComputer(){
             //nGB1.fire();
 
             if (randomSelectButton < 10){
-
                 Alert alertPCGoalPost = new Alert(Alert.AlertType.INFORMATION);
                 alertPCGoalPost.setTitle("Computer Player shot resulted in... ");
                 alertPCGoalPost.setContentText(" Computer Player hit the goal post !");
@@ -133,6 +135,7 @@ private void runComputer(){
             }
 
             else {
+                computerScore++;
                 Alert alertPCMissed = new Alert(Alert.AlertType.INFORMATION);
                 alertPCMissed.setTitle("Computer Player shot resulted in... ");
                 alertPCMissed.setContentText(" Coputer Player scored! GOOOOAAL !");
@@ -140,6 +143,7 @@ private void runComputer(){
             }
 
             System.out.println(i);
+            System.out.println("PUNKTY KOMPUTERA "+ computerScore);
         }
 
         isPlayer = true;
@@ -152,10 +156,24 @@ private void runComputer(){
             alertPlayerTurn.setContentText("It's time for a Human Player! Have fun!");
             alertPlayerTurn.showAndWait();
 
+            if (userScore > computerScore){
+                System.out.println("WYGRAL UZYTKOWNIK");
+                Text winUserText = new Text();
+                winUserText.setText("WYGRAL UZYTKOWNIK");
+            } else if(userScore < computerScore) {
+                System.out.println("WYGRAL PC");
+                Text winPCUser = new Text();
+                winPCUser.setText("REMIS");
+            } else {
+                System.out.println("REMIS");
+                Text remisUserPCText = new Text();
+                remisUserPCText.setText("REMIS");
+            }
+            rounds++;
+            System.out.println("Koniec rundy " + rounds);
             System.out.println("Teraz gracz!");
         }
 }
-
     private Button nGB1;
     private Button nGB2;
     private Button nGB3;
@@ -165,14 +183,10 @@ private void runComputer(){
    // private Button nGB7;
 
     public void newGame() {
-
         //stage > scene > container > nods
-
         Image newGameBackgroundImageFile = new Image("tloNewGame.jpg");
-
         Image buttonNeutral = new Image("ballNeutral.jpg");
         Image buttonSelected = new Image("ballSelected.jpg");
-
         BackgroundSize newGameBackgroundSize = new BackgroundSize(100, 100, true, true, true, false);
         BackgroundImage newGameBackgroundImage = new BackgroundImage(newGameBackgroundImageFile, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, newGameBackgroundSize);
         Background newGameBackground = new Background(newGameBackgroundImage);
@@ -181,99 +195,37 @@ private void runComputer(){
         newGameStage.setTitle("New Game Started");
         newGameStage.initModality(Modality.APPLICATION_MODAL);
 
-
         nGB1 = new Button();
         nGB1.setGraphic(new ImageView(buttonNeutral));//tak ustawiasz grafike buttona
-        nGB1.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                nGB1.setGraphic(new ImageView(buttonSelected));
-            }
-        });
-        nGB1.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                nGB1.setGraphic(new ImageView(buttonNeutral));
-            }
-        });
+        nGB1.setOnMouseEntered(event -> nGB1.setGraphic(new ImageView(buttonSelected)));
+        nGB1.setOnMouseExited(event -> nGB1.setGraphic(new ImageView(buttonNeutral)));
 
         nGB2 = new Button();
         nGB2.setGraphic(new ImageView(buttonNeutral));//tak ustawiasz grafike buttona
-        nGB2.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                nGB2.setGraphic(new ImageView(buttonSelected));
-            }
-        });
-        nGB2.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                nGB2.setGraphic(new ImageView(buttonNeutral));
-            }
-        });
+        nGB2.setOnMouseEntered(event -> nGB2.setGraphic(new ImageView(buttonSelected)));
+        nGB2.setOnMouseExited(event -> nGB2.setGraphic(new ImageView(buttonNeutral)));
 
         nGB3 = new Button();
         nGB3.setGraphic(new ImageView(buttonNeutral));//tak ustawiasz grafike buttona
-        nGB3.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                nGB3.setGraphic(new ImageView(buttonSelected));
-            }
-        });
-        nGB3.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                nGB3.setGraphic(new ImageView(buttonNeutral));
-            }
-        });
+        nGB3.setOnMouseEntered(event -> nGB3.setGraphic(new ImageView(buttonSelected)));
+        nGB3.setOnMouseExited(event -> nGB3.setGraphic(new ImageView(buttonNeutral)));
 
         nGB4 = new Button();
         nGB4.setGraphic(new ImageView(buttonNeutral));//tak ustawiasz grafike buttona
-        nGB4.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                nGB4.setGraphic(new ImageView(buttonSelected));
-            }
-        });
-        nGB4.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                nGB4.setGraphic(new ImageView(buttonNeutral));
-            }
-        });
+        nGB4.setOnMouseEntered(event -> nGB4.setGraphic(new ImageView(buttonSelected)));
+        nGB4.setOnMouseExited(event -> nGB4.setGraphic(new ImageView(buttonNeutral)));
 
         nGB5 = new Button();
         nGB5.setGraphic(new ImageView(buttonNeutral));//tak ustawiasz grafike buttona
-        nGB5.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                nGB5.setGraphic(new ImageView(buttonSelected));
-            }
-        });
-        nGB5.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                nGB5.setGraphic(new ImageView(buttonNeutral));
-            }
-        });
+        nGB5.setOnMouseEntered(event -> nGB5.setGraphic(new ImageView(buttonSelected)));
+        nGB5.setOnMouseExited(event -> nGB5.setGraphic(new ImageView(buttonNeutral)));
 
         nGB6 = new Button();
         nGB6.setGraphic(new ImageView(buttonNeutral));//tak ustawiasz grafike buttona
-        nGB6.setOnMouseEntered(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                nGB6.setGraphic(new ImageView(buttonSelected));
-            }
-        });
-        nGB6.setOnMouseExited(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                nGB6.setGraphic(new ImageView(buttonNeutral));
-            }
-        });
+        nGB6.setOnMouseEntered(event -> nGB6.setGraphic(new ImageView(buttonSelected)));
+        nGB6.setOnMouseExited(event -> nGB6.setGraphic(new ImageView(buttonNeutral)));
 
        // nGB7 = new Button();
-
 
         // create a menu
         javafx.scene.control.Menu m = new javafx.scene.control.Menu("Menu");
@@ -294,7 +246,6 @@ private void runComputer(){
         borderPane.setTop(mb);
 
 
-
         GridPane newGameGridPane = new GridPane();
         newGameGridPane.add(nGB1, 0, 0, 1, 1);
         newGameGridPane.add(nGB2, 1, 0, 1, 1);
@@ -302,7 +253,6 @@ private void runComputer(){
         newGameGridPane.add(nGB4, 0, 1, 1, 1);
         newGameGridPane.add(nGB5, 1, 1, 1, 1);
         newGameGridPane.add(nGB6, 2, 1, 1, 1);
-       // newGameGridPane.add(nGB7, 1, 3, 1, 1);
         newGameGridPane.setAlignment(Pos.CENTER);
         newGameGridPane.setVgap(50);
         newGameGridPane.setHgap(150);
@@ -319,7 +269,6 @@ private void runComputer(){
         nGB4.setOnAction(new HandleBall(nGB4));
         nGB5.setOnAction(new HandleBall(nGB5));
         nGB6.setOnAction(new HandleBall(nGB6));
-
         //nGB1.fire();//od tego pc moze zaczac
     }
 }

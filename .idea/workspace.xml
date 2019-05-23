@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7d95da0-bd93-4e8b-b630-c96b6154a9bf" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/gameGDFsource/Score.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.3/taskHistory/taskHistory.bin" afterDir="false" />
@@ -35,36 +36,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/gameGDFsource/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-700">
-              <caret line="194" column="11" lean-forward="true" selection-start-line="194" selection-start-column="11" selection-end-line="194" selection-end-column="11" />
+            <state relative-caret-position="1150">
+              <caret line="71" column="53" lean-forward="true" selection-start-line="71" selection-start-column="53" selection-end-line="71" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1273#1274#0" expanded="true" />
-                <element signature="e#1373#1374#0" expanded="true" />
-                <element signature="e#5993#5994#0" expanded="true" />
-                <element signature="e#6071#6072#0" expanded="true" />
-                <element signature="e#6219#6220#0" expanded="true" />
-                <element signature="e#6296#6297#0" expanded="true" />
-                <element signature="e#6561#6562#0" expanded="true" />
-                <element signature="e#6639#6640#0" expanded="true" />
-                <element signature="e#6787#6788#0" expanded="true" />
-                <element signature="e#6864#6865#0" expanded="true" />
-                <element signature="e#7129#7130#0" expanded="true" />
-                <element signature="e#7207#7208#0" expanded="true" />
-                <element signature="e#7355#7356#0" expanded="true" />
-                <element signature="e#7432#7433#0" expanded="true" />
-                <element signature="e#7697#7698#0" expanded="true" />
-                <element signature="e#7775#7776#0" expanded="true" />
-                <element signature="e#7923#7924#0" expanded="true" />
-                <element signature="e#8000#8001#0" expanded="true" />
-                <element signature="e#8265#8266#0" expanded="true" />
-                <element signature="e#8343#8344#0" expanded="true" />
-                <element signature="e#8491#8492#0" expanded="true" />
-                <element signature="e#8568#8569#0" expanded="true" />
-                <element signature="e#8833#8834#0" expanded="true" />
-                <element signature="e#8911#8912#0" expanded="true" />
-                <element signature="e#9059#9060#0" expanded="true" />
-                <element signature="e#9136#9137#0" expanded="true" />
+                <element signature="e#1303#1304#0" expanded="true" />
+                <element signature="e#1403#1404#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -73,8 +50,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/gameGDFsource/gdfmain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
+            <state relative-caret-position="2125">
+              <caret line="87" selection-start-line="87" selection-end-line="87" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/gameGDFsource/Score.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -85,8 +74,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/gameGDFsource/Turtorial.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="825">
-              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+            <state relative-caret-position="25">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -112,6 +101,7 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/gameGDFsource/Turtorial.java" />
         <option value="$PROJECT_DIR$/src/main/java/gameGDFsource/HandleBall.java" />
+        <option value="$PROJECT_DIR$/src/main/java/gameGDFsource/Score.java" />
         <option value="$PROJECT_DIR$/src/main/java/gameGDFsource/gdfmain.java" />
         <option value="$PROJECT_DIR$/src/main/java/gameGDFsource/Game.java" />
       </list>
@@ -129,8 +119,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -254,17 +244,19 @@
       <workItem from="1558604422947" duration="2863000" />
       <workItem from="1558610475294" duration="1344000" />
       <workItem from="1558614676133" duration="9909000" />
-      <workItem from="1558625060533" duration="6769000" />
+      <workItem from="1558625060533" duration="8852000" />
+      <workItem from="1558636450098" duration="16753000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89180000" />
+    <option name="totallyTimeSpent" value="108016000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1592" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.124200426" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22547974" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -273,7 +265,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32916668" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.34791666" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.21666667" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -282,7 +274,7 @@
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32916668" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.23125" />
       <window_info anchor="bottom" id="Version Control" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -331,10 +323,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gameGDFsource/HandleBall.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/gameGDFsource/gdfmain.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/gameGDFsource/Score.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="94" lean-forward="true" selection-start-line="94" selection-end-line="94" />
+        <state relative-caret-position="225">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -343,8 +335,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gameGDFsource/Turtorial.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="25">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/gameGDFsource/gdfmain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2125">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -353,36 +355,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/gameGDFsource/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-700">
-          <caret line="194" column="11" lean-forward="true" selection-start-line="194" selection-start-column="11" selection-end-line="194" selection-end-column="11" />
+        <state relative-caret-position="1150">
+          <caret line="71" column="53" lean-forward="true" selection-start-line="71" selection-start-column="53" selection-end-line="71" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1273#1274#0" expanded="true" />
-            <element signature="e#1373#1374#0" expanded="true" />
-            <element signature="e#5993#5994#0" expanded="true" />
-            <element signature="e#6071#6072#0" expanded="true" />
-            <element signature="e#6219#6220#0" expanded="true" />
-            <element signature="e#6296#6297#0" expanded="true" />
-            <element signature="e#6561#6562#0" expanded="true" />
-            <element signature="e#6639#6640#0" expanded="true" />
-            <element signature="e#6787#6788#0" expanded="true" />
-            <element signature="e#6864#6865#0" expanded="true" />
-            <element signature="e#7129#7130#0" expanded="true" />
-            <element signature="e#7207#7208#0" expanded="true" />
-            <element signature="e#7355#7356#0" expanded="true" />
-            <element signature="e#7432#7433#0" expanded="true" />
-            <element signature="e#7697#7698#0" expanded="true" />
-            <element signature="e#7775#7776#0" expanded="true" />
-            <element signature="e#7923#7924#0" expanded="true" />
-            <element signature="e#8000#8001#0" expanded="true" />
-            <element signature="e#8265#8266#0" expanded="true" />
-            <element signature="e#8343#8344#0" expanded="true" />
-            <element signature="e#8491#8492#0" expanded="true" />
-            <element signature="e#8568#8569#0" expanded="true" />
-            <element signature="e#8833#8834#0" expanded="true" />
-            <element signature="e#8911#8912#0" expanded="true" />
-            <element signature="e#9059#9060#0" expanded="true" />
-            <element signature="e#9136#9137#0" expanded="true" />
+            <element signature="e#1303#1304#0" expanded="true" />
+            <element signature="e#1403#1404#0" expanded="true" />
           </folding>
         </state>
       </provider>
