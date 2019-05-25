@@ -22,7 +22,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -42,17 +44,21 @@ public class Game {
     private int userScore = 0;
     private int computerScore = 0;
 
-    private class HandleBall implements EventHandler<ActionEvent>{
+    private class HandleBall implements EventHandler<MouseEvent>{
 
-        private Button buttonHandleBall; //jako referencja, ze ktory to jest
+       // private ImageView buttonHandleBall; //jako referencja, ze ktory to jest
+        private int selectedBall;
 
-        public HandleBall(Button buttonHandleBall) {//wiadomo, ktory przycisk to wywolal
-            this.buttonHandleBall = buttonHandleBall;
+
+        public HandleBall(int selectedBall) {//wiadomo, ktory przycisk to wywolal
+            this.selectedBall = selectedBall;
         }
 
         @Override
-        public void handle(ActionEvent event) {
+        public void handle(MouseEvent event) {
             //cialo metody
+
+
 
             if (isPlayer){
                 playerTurns++;
@@ -60,8 +66,17 @@ public class Game {
 
             Random random = new Random();
 
-            double playerMove = random.nextInt(101);
-            double computerMove = random.nextInt(101);
+
+            double computerMove = random.nextInt(6);
+
+            if (selectedBall == computerMove){
+                System.out.println("Bramkarz obronil");
+            } else {
+                System.out.println("Goal");
+            }
+
+
+            /*
 
             if (playerMove < 10){//to powoduje, ze 10 procent szans, ze trafi w slupek
 
@@ -73,13 +88,12 @@ public class Game {
                 }
             }
 
-            else if (computerMove < 40) {//poziom trudnosci komputera, ze pc zgadnie ruch gracza, wielkosc liczby okresla poziom trudnosci
-                if (isPlayer) {
+            else if (computerMove < 40 && isPlayer ) {//poziom trudnosci komputera, ze pc zgadnie ruch gracza, wielkosc liczby okresla poziom trudnosci
                     Alert alertHumanMissed = new Alert(Alert.AlertType.INFORMATION);
                     alertHumanMissed.setTitle("You're magnificent shot resulted in... ");
                     alertHumanMissed.setContentText(" You've missed... !");
                     alertHumanMissed.showAndWait();
-                }
+
             }
 
             else{//60% szans na gol
@@ -100,13 +114,16 @@ public class Game {
                 alertPCTurn.setTitle("Your turn has ended!");
                 alertPCTurn.setContentText("It's time for a Computer Player!");
                 alertPCTurn.showAndWait();
-
+*/
                 runComputer();
-            }
+           // }
         }
     }
 
 private void runComputer(){
+
+        //tez tu
+        //nGB1 = new ImageView(buttonNeutral);
 
         for (int i=0; i<5; i++ ){//5 razy ta sama czynnosc, 5 tur dla computerPlayer
 
@@ -174,29 +191,76 @@ private void runComputer(){
             System.out.println("Teraz gracz!");
         }
 }
-    private Button nGB1;
-    private Button nGB2;
-    private Button nGB3;
-    private Button nGB4;
-    private Button nGB5;
-    private Button nGB6;
+    private ImageView nGB1;
+    private ImageView nGB2;
+    private ImageView nGB3;
+    private ImageView nGB4;
+    private ImageView nGB5;
+    private ImageView nGB6;
    // private Button nGB7;
 
     public void newGame() {
         //stage > scene > container > nods
         Image newGameBackgroundImageFile = new Image("tloNewGame.jpg");
-        Image buttonNeutral = new Image("ballNeutral.jpg");
-        Image buttonSelected = new Image("ballSelected.jpg");
+        Image buttonNeutral = new Image("ballNeutral.png");
+        Image buttonSelected = new Image("ballSelected.png");
+
         BackgroundSize newGameBackgroundSize = new BackgroundSize(100, 100, true, true, true, false);
         BackgroundImage newGameBackgroundImage = new BackgroundImage(newGameBackgroundImageFile, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, newGameBackgroundSize);
         Background newGameBackground = new Background(newGameBackgroundImage);
+
+        Text scoreShow = new Text();
+        scoreShow.setText(Integer.toString(computerScore));
+        scoreShow.setFont(new Font(100));
+        scoreShow.setFill(Color.WHITE);
+        scoreShow.setTextAlignment(TextAlignment.CENTER);
+
+        //scoreShow.setText(String.valueOf(computerScore));
+
+
+
+
+
 
         Stage newGameStage = new Stage();
         newGameStage.setTitle("New Game Started");
         newGameStage.initModality(Modality.APPLICATION_MODAL);
 
-        nGB1 = new Button();
-        nGB1.setGraphic(new ImageView(buttonNeutral));//tak ustawiasz grafike buttona
+        //nGB1 = new Button();
+
+        nGB1 = new ImageView(buttonNeutral);
+        nGB1.setOnMouseEntered(event -> nGB1.setImage(buttonSelected));
+        nGB1.setOnMouseExited(event -> nGB1.setImage(buttonNeutral));
+
+        nGB2 = new ImageView(buttonNeutral);
+        nGB2.setOnMouseEntered(event -> nGB2.setImage(buttonSelected));
+        nGB2.setOnMouseExited(event -> nGB2.setImage(buttonNeutral));
+
+        nGB3 = new ImageView(buttonNeutral);
+        nGB3.setOnMouseEntered(event -> nGB3.setImage(buttonSelected));
+        nGB3.setOnMouseExited(event -> nGB3.setImage(buttonNeutral));
+
+        nGB4 = new ImageView(buttonNeutral);
+        nGB4.setOnMouseEntered(event -> nGB4.setImage(buttonSelected));
+        nGB4.setOnMouseExited(event -> nGB4.setImage(buttonNeutral));
+
+        nGB5 = new ImageView(buttonNeutral);
+        nGB5.setOnMouseEntered(event -> nGB5.setImage(buttonSelected));
+        nGB5.setOnMouseExited(event -> nGB5.setImage(buttonNeutral));
+
+        nGB6 = new ImageView(buttonNeutral);
+        nGB6.setOnMouseEntered(event -> nGB6.setImage(buttonSelected));
+        nGB6.setOnMouseExited(event -> nGB6.setImage(buttonNeutral));
+
+        nGB1.setStyle("-fx-cursor: hand");
+        nGB2.setStyle("-fx-cursor: hand");
+        nGB3.setStyle("-fx-cursor: hand");
+        nGB4.setStyle("-fx-cursor: hand");
+        nGB5.setStyle("-fx-cursor: hand");
+        nGB6.setStyle("-fx-cursor: hand");
+
+
+        /*nGB1.setGraphic(new ImageView(buttonNeutral));//tak ustawiasz grafike buttona
         nGB1.setOnMouseEntered(event -> nGB1.setGraphic(new ImageView(buttonSelected)));
         nGB1.setOnMouseExited(event -> nGB1.setGraphic(new ImageView(buttonNeutral)));
 
@@ -223,10 +287,11 @@ private void runComputer(){
         nGB6 = new Button();
         nGB6.setGraphic(new ImageView(buttonNeutral));//tak ustawiasz grafike buttona
         nGB6.setOnMouseEntered(event -> nGB6.setGraphic(new ImageView(buttonSelected)));
-        nGB6.setOnMouseExited(event -> nGB6.setGraphic(new ImageView(buttonNeutral)));
+        nGB6.setOnMouseExited(event -> nGB6.setGraphic(new ImageView(buttonNeutral)));*/
+
 
        // nGB7 = new Button();
-
+/*
         // create a menu
         javafx.scene.control.Menu m = new javafx.scene.control.Menu("Menu");
         // create menuitems
@@ -243,7 +308,7 @@ private void runComputer(){
         mb.getMenus().add(m);
 
         BorderPane borderPane = new BorderPane();
-        borderPane.setTop(mb);
+        borderPane.setTop(mb);*/
 
 
         GridPane newGameGridPane = new GridPane();
@@ -253,6 +318,7 @@ private void runComputer(){
         newGameGridPane.add(nGB4, 0, 1, 1, 1);
         newGameGridPane.add(nGB5, 1, 1, 1, 1);
         newGameGridPane.add(nGB6, 2, 1, 1, 1);
+        newGameGridPane.getChildren().addAll(scoreShow);
         newGameGridPane.setAlignment(Pos.CENTER);
         newGameGridPane.setVgap(50);
         newGameGridPane.setHgap(150);
@@ -263,12 +329,23 @@ private void runComputer(){
         newGameStage.setScene(newGameScene);
         newGameStage.show();
 
-        nGB1.setOnAction(new HandleBall(nGB1));
-        nGB2.setOnAction(new HandleBall(nGB2));
+        //nGB1.setOnAction(new HandleBall(nGB1));
+
+
+        nGB1.setOnMouseClicked(new HandleBall(1));
+        nGB2.setOnMouseClicked(new HandleBall(2));
+        nGB3.setOnMouseClicked(new HandleBall(3));
+        nGB4.setOnMouseClicked(new HandleBall(4));
+        nGB5.setOnMouseClicked(new HandleBall(5));
+        nGB6.setOnMouseClicked(new HandleBall(6));
+        //tu info, ktora zostala kliknieta
+
+
+       /* nGB2.setOnAction(new HandleBall(nGB2));
         nGB3.setOnAction(new HandleBall(nGB3));
         nGB4.setOnAction(new HandleBall(nGB4));
         nGB5.setOnAction(new HandleBall(nGB5));
-        nGB6.setOnAction(new HandleBall(nGB6));
+        nGB6.setOnAction(new HandleBall(nGB6));*/
         //nGB1.fire();//od tego pc moze zaczac
     }
 }

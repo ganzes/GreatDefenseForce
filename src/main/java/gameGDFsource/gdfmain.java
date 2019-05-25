@@ -41,7 +41,7 @@ public class gdfmain extends Application {//zawsze extends Application, by zasto
     Button button4;
     Button button5;
 
-    Image buttonSelected = new Image("ballSelected.jpg");
+    Image buttonSelected = new Image("ballSelected.png");
 
     Image imageBackgroundPrimaryStage = new Image("tlo.jpg");
     //Image newGameBackgroundImageFile = new Image("tloNewGame.jpg");
