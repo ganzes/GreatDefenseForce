@@ -41,8 +41,15 @@ public class Game {
     private int playerTurns = 0;
     private boolean isPlayer = true;
 
-    private int userScore = 0;
-    private int computerScore = 0;
+    private int userScore;
+
+    public int computerScore;
+
+
+    TextScore textScoreComputer = new TextScore();
+    TextScore textScoreUser = new TextScore();
+
+
 
     private class HandleBall implements EventHandler<MouseEvent>{
 
@@ -65,6 +72,8 @@ public class Game {
             }
 
             Random random = new Random();
+
+            textScoreUser.setText(Integer.toString(userScore));
 
 
             double computerMove = random.nextInt(6);
@@ -120,7 +129,8 @@ public class Game {
         }
     }
 
-private void runComputer(){
+
+    public void runComputer(){
 
         //tez tu
         //nGB1 = new ImageView(buttonNeutral);
@@ -153,10 +163,15 @@ private void runComputer(){
 
             else {
                 computerScore++;
+                textScoreComputer.setText(Integer.toString(computerScore));
+
+
+
                 Alert alertPCMissed = new Alert(Alert.AlertType.INFORMATION);
                 alertPCMissed.setTitle("Computer Player shot resulted in... ");
                 alertPCMissed.setContentText(" Coputer Player scored! GOOOOAAL !");
-                alertPCMissed.showAndWait();System.out.println("Computer Player scored! GOOOOAAL !");
+                alertPCMissed.showAndWait();
+                System.out.println("Computer Player scored! GOOOOAAL !");
             }
 
             System.out.println(i);
@@ -172,6 +187,8 @@ private void runComputer(){
             alertPlayerTurn.setTitle("Computer Player Turn has ended!");
             alertPlayerTurn.setContentText("It's time for a Human Player! Have fun!");
             alertPlayerTurn.showAndWait();
+
+
 
             if (userScore > computerScore){
                 System.out.println("WYGRAL UZYTKOWNIK");
@@ -191,13 +208,30 @@ private void runComputer(){
             System.out.println("Teraz gracz!");
         }
 }
-    private ImageView nGB1;
+
+/*
+public int FinalComputerScore(){
+        return computerScore;
+}*/
+
+
+
+
+
+
+
+private ImageView nGB1;
     private ImageView nGB2;
     private ImageView nGB3;
     private ImageView nGB4;
     private ImageView nGB5;
     private ImageView nGB6;
    // private Button nGB7;
+
+
+
+
+
 
     public void newGame() {
         //stage > scene > container > nods
@@ -209,17 +243,7 @@ private void runComputer(){
         BackgroundImage newGameBackgroundImage = new BackgroundImage(newGameBackgroundImageFile, BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, newGameBackgroundSize);
         Background newGameBackground = new Background(newGameBackgroundImage);
 
-        Text scoreShow = new Text();
-        scoreShow.setText(Integer.toString(computerScore));
-        scoreShow.setFont(new Font(100));
-        scoreShow.setFill(Color.WHITE);
-        scoreShow.setTextAlignment(TextAlignment.CENTER);
-
         //scoreShow.setText(String.valueOf(computerScore));
-
-
-
-
 
 
         Stage newGameStage = new Stage();
@@ -318,15 +342,51 @@ private void runComputer(){
         newGameGridPane.add(nGB4, 0, 1, 1, 1);
         newGameGridPane.add(nGB5, 1, 1, 1, 1);
         newGameGridPane.add(nGB6, 2, 1, 1, 1);
-        newGameGridPane.getChildren().addAll(scoreShow);
+
+        newGameGridPane.getColumnConstraints();
+
+        /*newGameGridPane.getChildren().addAll(textScoreComputer);
+        newGameGridPane.getChildren().addAll(textScoreUser);*/
         newGameGridPane.setAlignment(Pos.CENTER);
         newGameGridPane.setVgap(50);
-        newGameGridPane.setHgap(150);
+        newGameGridPane.setHgap(100);
         newGameGridPane.setBackground(newGameBackground);
+
+        Text textPCScore = new Text("PC");
+        textPCScore.setFont(new Font(30));
+        textPCScore.setFill(Color.RED);
+        textPCScore.setTextAlignment(TextAlignment.JUSTIFY);
+
+        GridPane scoreGridComputer = new GridPane();
+        scoreGridComputer.add(textPCScore,0,0);
+        scoreGridComputer.add(textScoreComputer,0 , 1, 1, 1);
+        scoreGridComputer.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+        scoreGridComputer.setAlignment(Pos.CENTER);
+
+
+        Text textUserScore = new Text("USER");
+        textUserScore.setFont(new Font(30));
+        textUserScore.setFill(Color.RED);
+        textUserScore.setTextAlignment(TextAlignment.JUSTIFY);
+
+        GridPane scoreGridUser = new GridPane();
+        scoreGridUser.add(textUserScore, 0, 0);
+        scoreGridUser.add(textScoreUser,0 , 1, 1, 1);
+        scoreGridUser.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+        scoreGridUser.setAlignment(Pos.CENTER);
+
+        //scoreGrid.setVgap(20);
+        //scoreGrid.setHgap(50);
+
+        newGameGridPane.add(scoreGridComputer, 3,0);
+        newGameGridPane.add(scoreGridUser, 3,1);
+
 
         Scene newGameScene = new Scene(newGameGridPane, 900, 500, Color.GREEN);
 
         newGameStage.setScene(newGameScene);
+        newGameStage.setResizable(false);
+        newGameStage.sizeToScene();
         newGameStage.show();
 
         //nGB1.setOnAction(new HandleBall(nGB1));

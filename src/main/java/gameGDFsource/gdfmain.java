@@ -50,6 +50,8 @@ public class gdfmain extends Application {//zawsze extends Application, by zasto
         launch(args);//metoda w klasie Application,
     }
 
+
+
     @Override //start powoduje, ze launch wchodzi w Application, wszystko przygotowuje i odpala start
     public void start(Stage primaryStage) throws Exception {//nasz glowny kod w javafx
         //grafika dla primaryStage
@@ -132,12 +134,15 @@ public class gdfmain extends Application {//zawsze extends Application, by zasto
         gridPrimaryStage.setHgap(30);
         GridPane.setColumnIndex(circle,0);
         GridPane.setRowIndex(circle,0);
+
         gridPrimaryStage.getChildren().addAll(button1, button4, button5, circle);
 
         Scene scene = new Scene(gridPrimaryStage, 900, 500, Color.GREEN);
 
         primaryStage.setTitle("GFD");//tytul okna
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.sizeToScene();
         primaryStage.show();
     }
 }
