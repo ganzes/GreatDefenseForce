@@ -22,7 +22,6 @@ public class Goal extends Stage {
         initModality(Modality.APPLICATION_MODAL);
         setScene(sceneGoal);
         setAlwaysOnTop(true);
-        setTitle("GOOAAALL!");
         setResizable(false);
         sizeToScene();
         show();
