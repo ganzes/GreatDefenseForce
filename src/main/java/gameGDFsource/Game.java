@@ -71,18 +71,133 @@ public class Game {
                 playerTurns++;
             }
 
+
+
             Random random = new Random();
+            Random random2 = new Random();
 
             textScoreUser.setText(Integer.toString(userScore));
 
-
             double computerMove = random.nextInt(6);
+            double chancesGoal = random2.nextInt(101);
 
-            if (selectedBall == computerMove){
-                System.out.println("Bramkarz obronil");
-            } else {
-                System.out.println("Goal");
+            System.out.println("NACISNALES "+ selectedBall);
+
+
+            if (selectedBall == 1 && computerMove == 1){
+                System.out.println("KOMPUTER ORBRONIL 1");
+            } else if (selectedBall == 1 && chancesGoal < 10) {
+                    System.out.println("UDERZYLES W SLUPEK 1");
+                    System.out.println("SLUPEK " +selectedBall);
+                } else if (selectedBall == 1 && chancesGoal > 10 ){
+                    System.out.println("GOOOOL " +selectedBall);
+                    System.out.println("STRZELILES GOLA POLE 1");
+                    userScore++;
+                }
+
+            if (selectedBall == 2 && computerMove == 2){
+                System.out.println("KOMPUTER ORBRONIL 2");
+            } else if (selectedBall == 2 && chancesGoal < 10) {
+                System.out.println("UDERZYLES W POPRZECZKE 2");
+                System.out.println("POPRZECZKA " +selectedBall);
+            } else if (selectedBall == 2 && chancesGoal > 10 ){
+                System.out.println("GOOOOL " +selectedBall);
+                System.out.println("STRZELILES GOLA POLE 2");
+                userScore++;
             }
+
+            if (selectedBall == 3 && computerMove == 3){
+                System.out.println("KOMPUTER ORBRONIL 3");
+            } else if (selectedBall == 3 && chancesGoal < 10) {
+                System.out.println("UDERZYLES W SLUPEK 3");
+                System.out.println("SLUPEK " +selectedBall);
+            } else if (selectedBall == 3 && chancesGoal > 10 ){
+                System.out.println("GOOOOL 3" +selectedBall);
+                System.out.println("STRZELILES GOLA POLE 3");
+                userScore++;
+            }
+
+            if (selectedBall == 4 && computerMove == 4){
+                System.out.println("KOMPUTER ORBRONIL 4");
+            } else if (selectedBall == 4 && chancesGoal < 5) {
+                System.out.println("UDERZYLES W SLUPEK 4");
+                System.out.println("SLUPEK " +selectedBall);
+            } else if (selectedBall == 4 && chancesGoal > 5 ){
+                System.out.println("GOOOOL 4" +selectedBall);
+                System.out.println("STRZELILES GOLA POLE 4");
+                userScore++;
+            }
+
+
+            if (selectedBall == 5 && computerMove == 5){
+                System.out.println("KOMPUTER ORBRONIL 5");
+            } else if (selectedBall == 5 && chancesGoal > 102) {
+                System.out.println("UDERZYLES W SLUPEK 5");
+                System.out.println("SLUPEK" +selectedBall);
+            } else if (selectedBall == 5 && chancesGoal < 102 ){
+                System.out.println("GOOOOL 5 " +selectedBall);
+                System.out.println("STRZELILES GOLA POLE 5");
+                userScore++;
+            }
+
+            if (selectedBall == 6 && computerMove == 6){
+                System.out.println("KOMPUTER ORBRONIL 6");
+            } else if (selectedBall == 6 && chancesGoal < 5) {
+                System.out.println("UDERZYLES W SLUPEK 6");
+                System.out.println("SLUPEK 6" +selectedBall);
+            } else if (selectedBall == 6 && chancesGoal > 5 ){
+                System.out.println("GOOOOL 6" +selectedBall);
+                System.out.println("STRZELILES GOLA POLE 6");
+                userScore++;
+            }
+                /*if (isPlayer && selectedBall == 2 && computerMove == 2) {
+                    System.out.println("KOMPUTER ORBRONIL POLE 2");
+                } else if (isPlayer && selectedBall == 2 && computerMove != 2) {
+                    System.out.println("STRZELILES GOLA  POLE 2");
+                    userScore++;
+                }
+
+                if (isPlayer && selectedBall == 3 && computerMove == 3) {
+                    System.out.println("KOMPUTER ORBRONIL POLE 3");
+                } else if (isPlayer && selectedBall == 3 && computerMove != 3 && chancesGoalPost <= 10) {
+                    System.out.println("UDERZYLES W SLUPEK");
+                } else {
+                    System.out.println("STRZELILES GOLA POLE 3");
+                    userScore++;
+                }
+
+                if (isPlayer && selectedBall == 4 && computerMove == 4) {
+                    System.out.println("KOMPUTER ORBRONIL POLE 4");
+                } else if (isPlayer && selectedBall == 4 && computerMove != 4 && chancesGoalPost <= 5) {
+                    System.out.println("UDERZYLES W SLUPEK");
+                } else {
+                    System.out.println("STRZELILES GOLA POLE 1");
+                    userScore++;
+                }
+
+                if (isPlayer && selectedBall == 5 && computerMove == 5) {
+                    System.out.println("KOMPUTER ORBRONIL POLE 5");
+                } else if (isPlayer && selectedBall == 5 && computerMove != 5) {
+                    System.out.println("STRZELILES GOLA  POLE 5");
+                    userScore++;
+                }
+
+                if (isPlayer && selectedBall == 6 && computerMove == 6) {
+                    System.out.println("KOMPUTER ORBRONIL POLE 6");
+                } else if (isPlayer && selectedBall == 6 && computerMove != 6 && chancesGoalPost <= 5) {
+                    System.out.println("UDERZYLES W SLUPEK POLE 6");
+                } else {
+                    System.out.println("STRZELILES GOLA POLE 6");
+                    userScore++;
+                }*/
+
+
+
+
+
+
+
+
 
 
             /*
@@ -124,7 +239,7 @@ public class Game {
                 alertPCTurn.setContentText("It's time for a Computer Player!");
                 alertPCTurn.showAndWait();
 */
-                runComputer();
+                //runComputer();
            // }
         }
     }
@@ -135,7 +250,7 @@ public class Game {
         //tez tu
         //nGB1 = new ImageView(buttonNeutral);
 
-        for (int i=0; i<5; i++ ){//5 razy ta sama czynnosc, 5 tur dla computerPlayer
+        for (int i=0; i<1; i++ ){//5 razy ta sama czynnosc, 5 tur dla computerPlayer
 
             Random randomButtonFire = new Random();
             double randomSelectButton = randomButtonFire.nextInt(101);
@@ -143,22 +258,22 @@ public class Game {
             //nGB1.fire();
 
             if (randomSelectButton < 10){
-                Alert alertPCGoalPost = new Alert(Alert.AlertType.INFORMATION);
+                /*Alert alertPCGoalPost = new Alert(Alert.AlertType.INFORMATION);
                 alertPCGoalPost.setTitle("Computer Player shot resulted in... ");
                 alertPCGoalPost.setContentText(" Computer Player hit the goal post !");
                 alertPCGoalPost.showAndWait();
 
                 String a = "Computer Player hit a Goal Poast!";
-                System.out.println(a);
+                System.out.println(a);*/
             }
 
             else if (randomSelectButton < 40){
-                Alert alertPCGoal = new Alert(Alert.AlertType.INFORMATION);
+              /*  Alert alertPCGoal = new Alert(Alert.AlertType.INFORMATION);
                 alertPCGoal.setTitle("Computer Player shot resulted in... ");
                 alertPCGoal.setContentText(" Computer Player missed... !");
                 alertPCGoal.showAndWait();
 
-                System.out.println("Computer Player missed!");
+                System.out.println("Computer Player missed!");*/
             }
 
             else {
@@ -167,15 +282,15 @@ public class Game {
 
 
 
-                Alert alertPCMissed = new Alert(Alert.AlertType.INFORMATION);
+                /*Alert alertPCMissed = new Alert(Alert.AlertType.INFORMATION);
                 alertPCMissed.setTitle("Computer Player shot resulted in... ");
                 alertPCMissed.setContentText(" Coputer Player scored! GOOOOAAL !");
                 alertPCMissed.showAndWait();
-                System.out.println("Computer Player scored! GOOOOAAL !");
+                System.out.println("Computer Player scored! GOOOOAAL !");*/
             }
 
-            System.out.println(i);
-            System.out.println("PUNKTY KOMPUTERA "+ computerScore);
+            //System.out.println(i);
+            //System.out.println("PUNKTY KOMPUTERA "+ computerScore);
         }
 
         isPlayer = true;
@@ -183,10 +298,10 @@ public class Game {
 
         if (isPlayer = true){
 
-            Alert alertPlayerTurn = new Alert(Alert.AlertType.CONFIRMATION);
+            /*Alert alertPlayerTurn = new Alert(Alert.AlertType.CONFIRMATION);
             alertPlayerTurn.setTitle("Computer Player Turn has ended!");
             alertPlayerTurn.setContentText("It's time for a Human Player! Have fun!");
-            alertPlayerTurn.showAndWait();
+            alertPlayerTurn.showAndWait();*/
 
 
 
@@ -204,8 +319,8 @@ public class Game {
                 remisUserPCText.setText("REMIS");
             }
             rounds++;
-            System.out.println("Koniec rundy " + rounds);
-            System.out.println("Teraz gracz!");
+           System.out.println("Koniec rundy " + rounds);
+           System.out.println("Teraz gracz!");
         }
 }
 
@@ -220,7 +335,7 @@ public int FinalComputerScore(){
 
 
 
-private ImageView nGB1;
+    private ImageView nGB1;
     private ImageView nGB2;
     private ImageView nGB3;
     private ImageView nGB4;
@@ -235,7 +350,7 @@ private ImageView nGB1;
 
     public void newGame() {
         //stage > scene > container > nods
-        Image newGameBackgroundImageFile = new Image("tloNewGame.jpg");
+        Image newGameBackgroundImageFile = new Image("tlo.jpg");
         Image buttonNeutral = new Image("ballNeutral.png");
         Image buttonSelected = new Image("ballSelected.png");
 
@@ -355,7 +470,7 @@ private ImageView nGB1;
         Text textPCScore = new Text("PC");
         textPCScore.setFont(new Font(30));
         textPCScore.setFill(Color.RED);
-        textPCScore.setTextAlignment(TextAlignment.JUSTIFY);
+        textPCScore.setTextAlignment(TextAlignment.CENTER);
 
         GridPane scoreGridComputer = new GridPane();
         scoreGridComputer.add(textPCScore,0,0);
@@ -367,7 +482,7 @@ private ImageView nGB1;
         Text textUserScore = new Text("USER");
         textUserScore.setFont(new Font(30));
         textUserScore.setFill(Color.RED);
-        textUserScore.setTextAlignment(TextAlignment.JUSTIFY);
+        textUserScore.setTextAlignment(TextAlignment.CENTER);
 
         GridPane scoreGridUser = new GridPane();
         scoreGridUser.add(textUserScore, 0, 0);
