@@ -1,6 +1,7 @@
 package gameGDFsource;
 
 import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.TextArea;
@@ -21,11 +22,15 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.TriangleMesh;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.awt.*;
@@ -71,8 +76,6 @@ public class Game {
                 playerTurns++;
             }
 
-
-
             Random random = new Random();
             Random random2 = new Random();
 
@@ -83,9 +86,52 @@ public class Game {
 
             System.out.println("NACISNALES "+ selectedBall);
 
-
             if (selectedBall == 1 && computerMove == 1){
                 System.out.println("KOMPUTER ORBRONIL 1");
+
+                Image imageGoalDefended = new Image("goalDeffended.png");
+                ImageView imageVGoalDefended = new ImageView(imageGoalDefended);
+
+                BorderPane pane = new BorderPane();
+                pane.setCenter(imageVGoalDefended);
+
+                Scene sceneGoalDefended = new Scene(pane);
+
+                Stage alert11 = new Stage();
+                alert11.initModality(Modality.APPLICATION_MODAL);
+                alert11.setScene(sceneGoalDefended);
+                alert11.setAlwaysOnTop(true);
+                alert11.setTitle("PC OBRONIL!");
+                alert11.setResizable(false);
+                alert11.sizeToScene();
+                alert11.show();
+
+                Timeline timelineForPCDefends = new Timeline();
+                timelineForPCDefends.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
+                        new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent event) {
+                                alert11.close();
+                            }
+                        }));
+                timelineForPCDefends.play();
+
+                /*Alert alert1Deffended = new Alert(Alert.AlertType.INFORMATION);
+                alert1Deffended.setGraphic(alert1Deffend);
+                alert1Deffended.showAndWait();*/
+
+               /* Popup goal = new Popup();
+                goal.getContent().addAll(alert1);
+                goal.centerOnScreen();
+
+
+                /*Circle circle = new Circle();
+                circle.setFill(new ImagePattern(alert1Deffend));
+                circle.setRadius(50);*/
+
+
+
+
             } else if (selectedBall == 1 && chancesGoal < 10) {
                     System.out.println("UDERZYLES W SLUPEK 1");
                     System.out.println("SLUPEK " +selectedBall);
@@ -128,7 +174,6 @@ public class Game {
                 userScore++;
             }
 
-
             if (selectedBall == 5 && computerMove == 5){
                 System.out.println("KOMPUTER ORBRONIL 5");
             } else if (selectedBall == 5 && chancesGoal > 102) {
@@ -150,6 +195,9 @@ public class Game {
                 System.out.println("STRZELILES GOLA POLE 6");
                 userScore++;
             }
+
+            System.out.println("WYNIK!! " + userScore);
+
                 /*if (isPlayer && selectedBall == 2 && computerMove == 2) {
                     System.out.println("KOMPUTER ORBRONIL POLE 2");
                 } else if (isPlayer && selectedBall == 2 && computerMove != 2) {
