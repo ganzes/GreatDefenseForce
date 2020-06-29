@@ -1,46 +1,33 @@
 package gameGDFsource;
 
 import javafx.animation.KeyFrame;
-import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
-import javafx.beans.binding.Bindings;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.Alert;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.TriangleMesh;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+
+
+import java.io.*;
+import java.util.HashMap;
 import java.util.Random;
-import java.util.Stack;
-import java.util.stream.Stream;
 
 public class Game {
+    File file = new File("fileSaveGame.txt");
 
     private int rounds = 0;
     private int playerTurns = 0;
@@ -49,6 +36,7 @@ public class Game {
     private int userScore;
 
     public int computerScore;
+
 
 
     TextScore textScoreComputer = new TextScore();
@@ -74,7 +62,7 @@ public class Game {
 
             textScoreUser.setText(Integer.toString(userScore));
 
-            double computerMove = random.nextInt(6);
+            double computerMove = random.nextInt(5)+1;//dzieki temu nigdy zera nie bedzie
             double chancesGoal = random2.nextInt(101);
 
             System.out.println("NACISNALES "+ selectedBall);
@@ -85,126 +73,26 @@ public class Game {
                 if (isPlayer){
                     System.out.println("KOMPUTER OBRONIL TWOJ STRZAL POLA 1");
 
-                    Image imageGoalDefended = new Image("goalDeffended.png");
-                    ImageView imageVGoalDefended = new ImageView(imageGoalDefended);
-
-                    BorderPane paneGoalDefend = new BorderPane();
-                    paneGoalDefend.setCenter(imageVGoalDefended);
-
-                    Scene sceneGoalDefended = new Scene(paneGoalDefend);
-
-                    Stage pcDefendsGoal = new Stage();
-                    pcDefendsGoal.initModality(Modality.APPLICATION_MODAL);
-                    pcDefendsGoal.setScene(sceneGoalDefended);
-                    pcDefendsGoal.setAlwaysOnTop(true);
-                    pcDefendsGoal.setTitle("Computer Player Defends The Goal!");
-                    pcDefendsGoal.setResizable(false);
-                    pcDefendsGoal.sizeToScene();
-                    pcDefendsGoal.show();
-
-                    Timeline timelineForPCDefends = new Timeline();
-                    timelineForPCDefends.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    pcDefendsGoal.close();
-                                }
-                            }));
-                    timelineForPCDefends.play();
+                    displayScene();
 
                 }
                 else {
                     //z perspektywy, ze gracz broni
                     System.out.println("OBRONILES PRZED KOMPUTEREM POLE 1");
 
-                    Image imageGoalDefendedUser = new Image("goalDeffendedUser.png");
-                    ImageView imageVGoalDefendedUser = new ImageView(imageGoalDefendedUser);
-
-                    BorderPane paneGoalDefend = new BorderPane();
-                    paneGoalDefend.setCenter(imageVGoalDefendedUser);
-
-                    Scene sceneGoalDefended = new Scene(paneGoalDefend);
-
-                    Stage pcDefendsGoal = new Stage();
-                    pcDefendsGoal.initModality(Modality.APPLICATION_MODAL);
-                    pcDefendsGoal.setScene(sceneGoalDefended);
-                    pcDefendsGoal.setAlwaysOnTop(true);
-                    pcDefendsGoal.setTitle("You've Defended The Goal!!!");
-                    pcDefendsGoal.setResizable(false);
-                    pcDefendsGoal.sizeToScene();
-                    pcDefendsGoal.show();
-
-                    Timeline timelineForPCDefends = new Timeline();
-                    timelineForPCDefends.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    pcDefendsGoal.close();
-                                }
-                            }));
-                    timelineForPCDefends.play();
+                    displayScene2();
                 }
 
             } else if (selectedBall == 1 && chancesGoal < 10) {
                 if (isPlayer) {
-                    Image imageLeftUpperGoalPost = new Image("leftUpperGoalPost.png");
-                    ImageView showImageLeftUpperGoalPost = new ImageView(imageLeftUpperGoalPost);
-
-                    BorderPane paneLeftUpperGoalPost = new BorderPane();
-                    paneLeftUpperGoalPost.setCenter(showImageLeftUpperGoalPost);
-
-                    Scene sceneLeftUpperGoalPost = new Scene(paneLeftUpperGoalPost);
-
-                    Stage stageLeftUpperGoalPost = new Stage();
-                    stageLeftUpperGoalPost.initModality(Modality.APPLICATION_MODAL);
-                    stageLeftUpperGoalPost.setScene(sceneLeftUpperGoalPost);
-                    stageLeftUpperGoalPost.setAlwaysOnTop(true);
-                    stageLeftUpperGoalPost.setTitle("You've Hitted Upper Left Goal Post!");
-                    stageLeftUpperGoalPost.setResizable(false);
-                    stageLeftUpperGoalPost.sizeToScene();
-                    stageLeftUpperGoalPost.show();
-
-                    Timeline timelineLeftUpperGoalPost = new Timeline();
-                    timelineLeftUpperGoalPost.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    stageLeftUpperGoalPost.close();
-                                }
-                            }));
-                    timelineLeftUpperGoalPost.play();
+                    displayScene3("You've Hitted Upper Left Goal Post!");
 
                     System.out.println("UDERZYLES W SLUPEK 1");
                     System.out.println("SLUPEK " + selectedBall);
                 }
                 else {
                 //TU KOMPUTER TRAFIA W SLUPEK!
-                    Image imageLeftUpperGoalPost = new Image("leftUpperGoalPost.png");
-                    ImageView showImageLeftUpperGoalPost = new ImageView(imageLeftUpperGoalPost);
-
-                    BorderPane paneLeftUpperGoalPost = new BorderPane();
-                    paneLeftUpperGoalPost.setCenter(showImageLeftUpperGoalPost);
-
-                    Scene sceneLeftUpperGoalPost = new Scene(paneLeftUpperGoalPost);
-
-                    Stage stageLeftUpperGoalPost = new Stage();
-                    stageLeftUpperGoalPost.initModality(Modality.APPLICATION_MODAL);
-                    stageLeftUpperGoalPost.setScene(sceneLeftUpperGoalPost);
-                    stageLeftUpperGoalPost.setAlwaysOnTop(true);
-                    stageLeftUpperGoalPost.setTitle("Computer Hitted Upper Goal Post!");
-                    stageLeftUpperGoalPost.setResizable(false);
-                    stageLeftUpperGoalPost.sizeToScene();
-                    stageLeftUpperGoalPost.show();
-
-                    Timeline timelineLeftUpperGoalPost = new Timeline();
-                    timelineLeftUpperGoalPost.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    stageLeftUpperGoalPost.close();
-                                }
-                            }));
-                    timelineLeftUpperGoalPost.play();
+                    displayScene3("Computer Hitted Upper Goal Post!");
 
                     System.out.println("KOMPUTER UDERZYL W SLUPEK 1");
                     System.out.println("KOMPUTER SLUPEK 1 " + selectedBall);
@@ -216,20 +104,7 @@ public class Game {
                     System.out.println("GOOOOL " +selectedBall);
                     System.out.println("STRZELILES GOLA POLE 1");
 
-                    Goal stageGoal = new Goal();
-                    stageGoal.setTitle("You've Scored! GOALL!");
-
-                    Timeline timelineGoal = new Timeline();
-                    timelineGoal.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    stageGoal.close();
-                                }
-                            }));
-                    timelineGoal.play();
-
-                    userScore++;
+                    displayScene4();
                 }
                     else {
     //TU KOMPUTER TRAFIA :(
@@ -237,21 +112,7 @@ public class Game {
                     System.out.println("GOOOOL KOMPUTERA" +selectedBall);
                     System.out.println("KOMPUTER STRZELIL POLE 1");
 
-                    Goal stageGoal = new Goal();
-                    stageGoal.setTitle("Computer Scored! Oh no, but... GOALL!");
-
-                    Timeline timelineGoal = new Timeline();
-                    timelineGoal.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    stageGoal.close();
-                                }
-                            }));
-                    timelineGoal.play();
-
-                    computerScore++;
-                    textScoreComputer.setText(Integer.toString(computerScore));
+                    displayScene5();
                 }
             }
 
@@ -263,32 +124,7 @@ public class Game {
                 if (isPlayer){
                     System.out.println("KOMPUTER ORBRONIL 2");
 
-                    Image imageGoalDefended = new Image("goalDeffended.png");
-                    ImageView imageVGoalDefended = new ImageView(imageGoalDefended);
-
-                    BorderPane paneGoalDefend = new BorderPane();
-                    paneGoalDefend.setCenter(imageVGoalDefended);
-
-                    Scene sceneGoalDefended = new Scene(paneGoalDefend);
-
-                    Stage pcDefendsGoal = new Stage();
-                    pcDefendsGoal.initModality(Modality.APPLICATION_MODAL);
-                    pcDefendsGoal.setScene(sceneGoalDefended);
-                    pcDefendsGoal.setAlwaysOnTop(true);
-                    pcDefendsGoal.setTitle("Computer Player Defends The Goal!");
-                    pcDefendsGoal.setResizable(false);
-                    pcDefendsGoal.sizeToScene();
-                    pcDefendsGoal.show();
-
-                    Timeline timelineForPCDefends = new Timeline();
-                    timelineForPCDefends.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    pcDefendsGoal.close();
-                                }
-                            }));
-                    timelineForPCDefends.play();
+                    displayScene();
 
                 }
 
@@ -296,32 +132,7 @@ public class Game {
                     //z perspektywy, ze gracz broni
                     System.out.println("BRONISZ PRZED KOMPUTEREM");
 
-                    Image imageGoalDefendedUser = new Image("goalDeffendedUser.png");
-                    ImageView imageVGoalDefendedUser = new ImageView(imageGoalDefendedUser);
-
-                    BorderPane paneGoalDefend = new BorderPane();
-                    paneGoalDefend.setCenter(imageVGoalDefendedUser);
-
-                    Scene sceneGoalDefended = new Scene(paneGoalDefend);
-
-                    Stage pcDefendsGoal = new Stage();
-                    pcDefendsGoal.initModality(Modality.APPLICATION_MODAL);
-                    pcDefendsGoal.setScene(sceneGoalDefended);
-                    pcDefendsGoal.setAlwaysOnTop(true);
-                    pcDefendsGoal.setTitle("You've Defended The Goal!!!");
-                    pcDefendsGoal.setResizable(false);
-                    pcDefendsGoal.sizeToScene();
-                    pcDefendsGoal.show();
-
-                    Timeline timelineForPCDefends = new Timeline();
-                    timelineForPCDefends.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    pcDefendsGoal.close();
-                                }
-                            }));
-                    timelineForPCDefends.play();
+                    displayScene2();
                 }
 
             } else if (selectedBall == 2 && chancesGoal < 10) {
@@ -395,20 +206,7 @@ public class Game {
                     System.out.println("GOOOOL " +selectedBall);
                     System.out.println("STRZELILES GOLA POLE 2");
 
-                    Goal stageGoal = new Goal();
-                    stageGoal.setTitle("You've Scored! GOALL!");
-
-                    Timeline timelineGoal = new Timeline();
-                    timelineGoal.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    stageGoal.close();
-                                }
-                            }));
-                    timelineGoal.play();
-
-                    userScore++;
+                    displayScene4();
                 }
                 else {
                     //TU KOMPUTER TRAFIA :(
@@ -416,21 +214,7 @@ public class Game {
                     System.out.println("GOOOOL KOMPUTERA" +selectedBall);
                     System.out.println("KOMPUTER STRZELIL POLE 2");
 
-                    Goal stageGoal = new Goal();
-                    stageGoal.setTitle("Computer Scored! Oh no, but... GOALL!");
-
-                    Timeline timelineGoal = new Timeline();
-                    timelineGoal.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    stageGoal.close();
-                                }
-                            }));
-                    timelineGoal.play();
-
-                    computerScore++;
-                    textScoreComputer.setText(Integer.toString(computerScore));
+                    displayScene5();
                 }
             }
 
@@ -441,64 +225,14 @@ public class Game {
                 if (isPlayer){
                     System.out.println("KOMPUTER ORBRONIL 3");
 
-                    Image imageGoalDefended = new Image("goalDeffended.png");
-                    ImageView imageVGoalDefended = new ImageView(imageGoalDefended);
-
-                    BorderPane paneGoalDefend = new BorderPane();
-                    paneGoalDefend.setCenter(imageVGoalDefended);
-
-                    Scene sceneGoalDefended = new Scene(paneGoalDefend);
-
-                    Stage pcDefendsGoal = new Stage();
-                    pcDefendsGoal.initModality(Modality.APPLICATION_MODAL);
-                    pcDefendsGoal.setScene(sceneGoalDefended);
-                    pcDefendsGoal.setAlwaysOnTop(true);
-                    pcDefendsGoal.setTitle("Computer Player Defends The Goal!");
-                    pcDefendsGoal.setResizable(false);
-                    pcDefendsGoal.sizeToScene();
-                    pcDefendsGoal.show();
-
-                    Timeline timelineForPCDefends = new Timeline();
-                    timelineForPCDefends.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    pcDefendsGoal.close();
-                                }
-                            }));
-                    timelineForPCDefends.play();
+                    displayScene();
 
                 }
                 else {
                     //z perspektywy, ze gracz broni
                     System.out.println("BRONISZ PRZED KOMPUTEREM");
 
-                    Image imageGoalDefendedUser = new Image("goalDeffendedUser.png");
-                    ImageView imageVGoalDefendedUser = new ImageView(imageGoalDefendedUser);
-
-                    BorderPane paneGoalDefend = new BorderPane();
-                    paneGoalDefend.setCenter(imageVGoalDefendedUser);
-
-                    Scene sceneGoalDefended = new Scene(paneGoalDefend);
-
-                    Stage pcDefendsGoal = new Stage();
-                    pcDefendsGoal.initModality(Modality.APPLICATION_MODAL);
-                    pcDefendsGoal.setScene(sceneGoalDefended);
-                    pcDefendsGoal.setAlwaysOnTop(true);
-                    pcDefendsGoal.setTitle("You've Defended The Goal!!!");
-                    pcDefendsGoal.setResizable(false);
-                    pcDefendsGoal.sizeToScene();
-                    pcDefendsGoal.show();
-
-                    Timeline timelineForPCDefends = new Timeline();
-                    timelineForPCDefends.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    pcDefendsGoal.close();
-                                }
-                            }));
-                    timelineForPCDefends.play();
+                    displayScene2();
                 }
 
             } else if (selectedBall == 3 && chancesGoal < 10) {
@@ -572,20 +306,7 @@ public class Game {
                     System.out.println("GOOOOL " +selectedBall);
                     System.out.println("STRZELILES GOLA POLE 3");
 
-                    Goal stageGoal = new Goal();
-                    stageGoal.setTitle("You've Scored! GOALL!");
-
-                    Timeline timelineGoal = new Timeline();
-                    timelineGoal.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    stageGoal.close();
-                                }
-                            }));
-                    timelineGoal.play();
-
-                    userScore++;
+                    displayScene4();
                 }
                 else {
                     //TU KOMPUTER TRAFIA :(
@@ -593,21 +314,7 @@ public class Game {
                     System.out.println("GOOOOL KOMPUTERA" +selectedBall);
                     System.out.println("KOMPUTER STRZELIL POLE 3");
 
-                    Goal stageGoal = new Goal();
-                    stageGoal.setTitle("Computer Scored! Oh no, but... GOALL!");
-
-                    Timeline timelineGoal = new Timeline();
-                    timelineGoal.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    stageGoal.close();
-                                }
-                            }));
-                    timelineGoal.play();
-
-                    computerScore++;
-                    textScoreComputer.setText(Integer.toString(computerScore));
+                    displayScene5();
                 }
             }
 
@@ -618,64 +325,14 @@ public class Game {
                 if (isPlayer){
                     System.out.println("KOMPUTER ORBRONIL 4");
 
-                    Image imageGoalDefended = new Image("goalDeffended.png");
-                    ImageView imageVGoalDefended = new ImageView(imageGoalDefended);
-
-                    BorderPane paneGoalDefend = new BorderPane();
-                    paneGoalDefend.setCenter(imageVGoalDefended);
-
-                    Scene sceneGoalDefended = new Scene(paneGoalDefend);
-
-                    Stage pcDefendsGoal = new Stage();
-                    pcDefendsGoal.initModality(Modality.APPLICATION_MODAL);
-                    pcDefendsGoal.setScene(sceneGoalDefended);
-                    pcDefendsGoal.setAlwaysOnTop(true);
-                    pcDefendsGoal.setTitle("Computer Player Defends The Goal!");
-                    pcDefendsGoal.setResizable(false);
-                    pcDefendsGoal.sizeToScene();
-                    pcDefendsGoal.show();
-
-                    Timeline timelineForPCDefends = new Timeline();
-                    timelineForPCDefends.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    pcDefendsGoal.close();
-                                }
-                            }));
-                    timelineForPCDefends.play();
+                    displayScene();
 
                 }
                 else {
                     //z perspektywy, ze gracz broni
                     System.out.println("BRONISZ PRZED KOMPUTEREM");
 
-                    Image imageGoalDefendedUser = new Image("goalDeffendedUser.png");
-                    ImageView imageVGoalDefendedUser = new ImageView(imageGoalDefendedUser);
-
-                    BorderPane paneGoalDefend = new BorderPane();
-                    paneGoalDefend.setCenter(imageVGoalDefendedUser);
-
-                    Scene sceneGoalDefended = new Scene(paneGoalDefend);
-
-                    Stage pcDefendsGoal = new Stage();
-                    pcDefendsGoal.initModality(Modality.APPLICATION_MODAL);
-                    pcDefendsGoal.setScene(sceneGoalDefended);
-                    pcDefendsGoal.setAlwaysOnTop(true);
-                    pcDefendsGoal.setTitle("You've Defended The Goal!!!");
-                    pcDefendsGoal.setResizable(false);
-                    pcDefendsGoal.sizeToScene();
-                    pcDefendsGoal.show();
-
-                    Timeline timelineForPCDefends = new Timeline();
-                    timelineForPCDefends.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    pcDefendsGoal.close();
-                                }
-                            }));
-                    timelineForPCDefends.play();
+                    displayScene2();
                 }
 
             } else if (selectedBall == 4 && chancesGoal < 5) {
@@ -749,20 +406,7 @@ public class Game {
                     System.out.println("GOOOOL " +selectedBall);
                     System.out.println("STRZELILES GOLA POLE 4");
 
-                    Goal stageGoal = new Goal();
-                    stageGoal.setTitle("You've Scored! GOALL!");
-
-                    Timeline timelineGoal = new Timeline();
-                    timelineGoal.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    stageGoal.close();
-                                }
-                            }));
-                    timelineGoal.play();
-
-                    userScore++;
+                    displayScene4();
                 }
                 else {
                     //TU KOMPUTER TRAFIA :(
@@ -770,21 +414,7 @@ public class Game {
                     System.out.println("GOOOOL KOMPUTERA" +selectedBall);
                     System.out.println("KOMPUTER STRZELIL POLE 4");
 
-                    Goal stageGoal = new Goal();
-                    stageGoal.setTitle("Computer Scored! Oh no, but... GOALL!");
-
-                    Timeline timelineGoal = new Timeline();
-                    timelineGoal.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    stageGoal.close();
-                                }
-                            }));
-                    timelineGoal.play();
-
-                    computerScore++;
-                    textScoreComputer.setText(Integer.toString(computerScore));
+                    displayScene5();
                 }
             }
 
@@ -794,64 +424,14 @@ public class Game {
                 if (isPlayer){
                     System.out.println("KOMPUTER ORBRONIL 5");
 
-                    Image imageGoalDefended = new Image("goalDeffended.png");
-                    ImageView imageVGoalDefended = new ImageView(imageGoalDefended);
-
-                    BorderPane paneGoalDefend = new BorderPane();
-                    paneGoalDefend.setCenter(imageVGoalDefended);
-
-                    Scene sceneGoalDefended = new Scene(paneGoalDefend);
-
-                    Stage pcDefendsGoal = new Stage();
-                    pcDefendsGoal.initModality(Modality.APPLICATION_MODAL);
-                    pcDefendsGoal.setScene(sceneGoalDefended);
-                    pcDefendsGoal.setAlwaysOnTop(true);
-                    pcDefendsGoal.setTitle("Computer Player Defends The Goal!");
-                    pcDefendsGoal.setResizable(false);
-                    pcDefendsGoal.sizeToScene();
-                    pcDefendsGoal.show();
-
-                    Timeline timelineForPCDefends = new Timeline();
-                    timelineForPCDefends.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    pcDefendsGoal.close();
-                                }
-                            }));
-                    timelineForPCDefends.play();
+                    displayScene();
 
                 }
                 else {
                     //z perspektywy, ze gracz broni
                     System.out.println("BRONISZ PRZED KOMPUTEREM");
 
-                    Image imageGoalDefendedUser = new Image("goalDeffendedUser.png");
-                    ImageView imageVGoalDefendedUser = new ImageView(imageGoalDefendedUser);
-
-                    BorderPane paneGoalDefend = new BorderPane();
-                    paneGoalDefend.setCenter(imageVGoalDefendedUser);
-
-                    Scene sceneGoalDefended = new Scene(paneGoalDefend);
-
-                    Stage pcDefendsGoal = new Stage();
-                    pcDefendsGoal.initModality(Modality.APPLICATION_MODAL);
-                    pcDefendsGoal.setScene(sceneGoalDefended);
-                    pcDefendsGoal.setAlwaysOnTop(true);
-                    pcDefendsGoal.setTitle("You've Defended The Goal!!!");
-                    pcDefendsGoal.setResizable(false);
-                    pcDefendsGoal.sizeToScene();
-                    pcDefendsGoal.show();
-
-                    Timeline timelineForPCDefends = new Timeline();
-                    timelineForPCDefends.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    pcDefendsGoal.close();
-                                }
-                            }));
-                    timelineForPCDefends.play();
+                    displayScene2();
                 }
 
             } else if (selectedBall == 5 && chancesGoal < 0) {
@@ -925,20 +505,7 @@ public class Game {
                     System.out.println("GOOOOL " +selectedBall);
                     System.out.println("STRZELILES GOLA POLE 5");
 
-                    Goal stageGoal = new Goal();
-                    stageGoal.setTitle("You've Scored! GOALL!");
-
-                    Timeline timelineGoal = new Timeline();
-                    timelineGoal.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    stageGoal.close();
-                                }
-                            }));
-                    timelineGoal.play();
-
-                    userScore++;
+                    displayScene4();
                 }
                 else {
                     //TU KOMPUTER TRAFIA :(
@@ -946,21 +513,7 @@ public class Game {
                     System.out.println("GOOOOL KOMPUTERA" +selectedBall);
                     System.out.println("KOMPUTER STRZELIL POLE 5");
 
-                    Goal stageGoal = new Goal();
-                    stageGoal.setTitle("Computer Scored! Oh no, but... GOALL!");
-
-                    Timeline timelineGoal = new Timeline();
-                    timelineGoal.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    stageGoal.close();
-                                }
-                            }));
-                    timelineGoal.play();
-
-                    computerScore++;
-                    textScoreComputer.setText(Integer.toString(computerScore));
+                    displayScene5();
                 }
             }
 
@@ -970,64 +523,14 @@ public class Game {
                 if (isPlayer){
                     System.out.println("KOMPUTER ORBRONIL 6");
 
-                    Image imageGoalDefended = new Image("goalDeffended.png");
-                    ImageView imageVGoalDefended = new ImageView(imageGoalDefended);
-
-                    BorderPane paneGoalDefend = new BorderPane();
-                    paneGoalDefend.setCenter(imageVGoalDefended);
-
-                    Scene sceneGoalDefended = new Scene(paneGoalDefend);
-
-                    Stage pcDefendsGoal = new Stage();
-                    pcDefendsGoal.initModality(Modality.APPLICATION_MODAL);
-                    pcDefendsGoal.setScene(sceneGoalDefended);
-                    pcDefendsGoal.setAlwaysOnTop(true);
-                    pcDefendsGoal.setTitle("Computer Player Defends The Goal!");
-                    pcDefendsGoal.setResizable(false);
-                    pcDefendsGoal.sizeToScene();
-                    pcDefendsGoal.show();
-
-                    Timeline timelineForPCDefends = new Timeline();
-                    timelineForPCDefends.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    pcDefendsGoal.close();
-                                }
-                            }));
-                    timelineForPCDefends.play();
+                    displayScene();
 
                 }
                 else {
                     //z perspektywy, ze gracz broni
                     System.out.println("BRONISZ PRZED KOMPUTEREM");
 
-                    Image imageGoalDefendedUser = new Image("goalDeffendedUser.png");
-                    ImageView imageVGoalDefendedUser = new ImageView(imageGoalDefendedUser);
-
-                    BorderPane paneGoalDefend = new BorderPane();
-                    paneGoalDefend.setCenter(imageVGoalDefendedUser);
-
-                    Scene sceneGoalDefended = new Scene(paneGoalDefend);
-
-                    Stage pcDefendsGoal = new Stage();
-                    pcDefendsGoal.initModality(Modality.APPLICATION_MODAL);
-                    pcDefendsGoal.setScene(sceneGoalDefended);
-                    pcDefendsGoal.setAlwaysOnTop(true);
-                    pcDefendsGoal.setTitle("You've Defended The Goal!!!");
-                    pcDefendsGoal.setResizable(false);
-                    pcDefendsGoal.sizeToScene();
-                    pcDefendsGoal.show();
-
-                    Timeline timelineForPCDefends = new Timeline();
-                    timelineForPCDefends.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    pcDefendsGoal.close();
-                                }
-                            }));
-                    timelineForPCDefends.play();
+                    displayScene2();
                 }
 
             } else if (selectedBall == 6 && chancesGoal < 5) {
@@ -1101,20 +604,7 @@ public class Game {
                     System.out.println("GOOOOL " +selectedBall);
                     System.out.println("STRZELILES GOLA POLE 6");
 
-                    Goal stageGoal = new Goal();
-                    stageGoal.setTitle("You've Scored! GOALL!");
-
-                    Timeline timelineGoal = new Timeline();
-                    timelineGoal.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    stageGoal.close();
-                                }
-                            }));
-                    timelineGoal.play();
-
-                    userScore++;
+                    displayScene4();
                 }
                 else {
                     //TU KOMPUTER TRAFIA :(
@@ -1122,21 +612,7 @@ public class Game {
                     System.out.println("GOOOOL KOMPUTERA" +selectedBall);
                     System.out.println("KOMPUTER STRZELIL POLE 6");
 
-                    Goal stageGoal = new Goal();
-                    stageGoal.setTitle("Computer Scored! Oh no, but... GOALL!");
-
-                    Timeline timelineGoal = new Timeline();
-                    timelineGoal.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
-                            new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    stageGoal.close();
-                                }
-                            }));
-                    timelineGoal.play();
-
-                    computerScore++;
-                    textScoreComputer.setText(Integer.toString(computerScore));
+                    displayScene5();
                 }
             }
 
@@ -1149,6 +625,128 @@ public class Game {
            //     playerTurns=0;
          //   }
           }
+
+        private void displayScene5() {
+            Goal stageGoal = new Goal();
+            stageGoal.setTitle("Computer Scored! Oh no, but... GOALL!");
+
+            Timeline timelineGoal = new Timeline();
+            timelineGoal.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
+                    new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            stageGoal.close();
+                        }
+                    }));
+            timelineGoal.play();
+
+            computerScore++;
+            textScoreComputer.setText(Integer.toString(computerScore));
+        }
+
+        private void displayScene4() {
+            Goal stageGoal = new Goal();
+            stageGoal.setTitle("You've Scored! GOALL!");
+
+            Timeline timelineGoal = new Timeline();
+            timelineGoal.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
+                    new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            stageGoal.close();
+                        }
+                    }));
+            timelineGoal.play();
+
+            userScore++;
+        }
+
+        private void displayScene3(String s) {
+            Image imageLeftUpperGoalPost = new Image("leftUpperGoalPost.png");
+            ImageView showImageLeftUpperGoalPost = new ImageView(imageLeftUpperGoalPost);
+
+            BorderPane paneLeftUpperGoalPost = new BorderPane();
+            paneLeftUpperGoalPost.setCenter(showImageLeftUpperGoalPost);
+
+            Scene sceneLeftUpperGoalPost = new Scene(paneLeftUpperGoalPost);
+
+            Stage stageLeftUpperGoalPost = new Stage();
+            stageLeftUpperGoalPost.initModality(Modality.APPLICATION_MODAL);
+            stageLeftUpperGoalPost.setScene(sceneLeftUpperGoalPost);
+            stageLeftUpperGoalPost.setAlwaysOnTop(true);
+            stageLeftUpperGoalPost.setTitle(s);
+            stageLeftUpperGoalPost.setResizable(false);
+            stageLeftUpperGoalPost.sizeToScene();
+            stageLeftUpperGoalPost.show();
+
+            Timeline timelineLeftUpperGoalPost = new Timeline();
+            timelineLeftUpperGoalPost.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
+                    new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            stageLeftUpperGoalPost.close();
+                        }
+                    }));
+            timelineLeftUpperGoalPost.play();
+        }
+
+        private void displayScene2() {
+            Image imageGoalDefendedUser = new Image("goalDeffendedUser.png");
+            ImageView imageVGoalDefendedUser = new ImageView(imageGoalDefendedUser);
+
+            BorderPane paneGoalDefend = new BorderPane();
+            paneGoalDefend.setCenter(imageVGoalDefendedUser);
+
+            Scene sceneGoalDefended = new Scene(paneGoalDefend);
+
+            Stage pcDefendsGoal = new Stage();
+            pcDefendsGoal.initModality(Modality.APPLICATION_MODAL);
+            pcDefendsGoal.setScene(sceneGoalDefended);
+            pcDefendsGoal.setAlwaysOnTop(true);
+            pcDefendsGoal.setTitle("You've Defended The Goal!!!");
+            pcDefendsGoal.setResizable(false);
+            pcDefendsGoal.sizeToScene();
+            pcDefendsGoal.show();
+
+            Timeline timelineForPCDefends = new Timeline();
+            timelineForPCDefends.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
+                    new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            pcDefendsGoal.close();
+                        }
+                    }));
+            timelineForPCDefends.play();
+        }
+
+        private void displayScene() {
+            Image imageGoalDefended = new Image("goalDeffended.png");
+            ImageView imageVGoalDefended = new ImageView(imageGoalDefended);
+
+            BorderPane paneGoalDefend = new BorderPane();
+            paneGoalDefend.setCenter(imageVGoalDefended);
+
+            Scene sceneGoalDefended = new Scene(paneGoalDefend);
+
+            Stage pcDefendsGoal = new Stage();
+            pcDefendsGoal.initModality(Modality.APPLICATION_MODAL);
+            pcDefendsGoal.setScene(sceneGoalDefended);
+            pcDefendsGoal.setAlwaysOnTop(true);
+            pcDefendsGoal.setTitle("Computer Player Defends The Goal!");
+            pcDefendsGoal.setResizable(false);
+            pcDefendsGoal.sizeToScene();
+            pcDefendsGoal.show();
+
+            Timeline timelineForPCDefends = new Timeline();
+            timelineForPCDefends.getKeyFrames().add(new KeyFrame(Duration.seconds(1),
+                    new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent event) {
+                            pcDefendsGoal.close();
+                        }
+                    }));
+            timelineForPCDefends.play();
+        }
     }
 
     private ImageView nGB1;
@@ -1157,6 +755,8 @@ public class Game {
     private ImageView nGB4;
     private ImageView nGB5;
     private ImageView nGB6;
+
+
 
     public void newGame() {
         //stage > scene > container > nods
@@ -1203,6 +803,39 @@ public class Game {
         nGB5.setStyle("-fx-cursor: hand");
         nGB6.setStyle("-fx-cursor: hand");
 
+        Button save = new Button();
+        save.setText("Save Current Game");
+
+        save.setOnAction(event -> {
+            HashMap<String, Integer> map = new HashMap<>();
+            map.put("User ", userScore);
+            map.put("PC", computerScore);
+
+            try {
+                ObjectOutputStream oos=new ObjectOutputStream(new FileOutputStream(file));
+                oos.writeObject(map);
+                oos.close();
+            } catch (Exception a){
+                System.out.println(a);
+            }
+        });
+
+Button load = new Button();
+load.setText("Load Saved Game");
+
+load.setOnAction(event -> {
+    try {
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+        Object readMap = ois.readObject();//zwraca mi to obiekt
+
+        HashMap<String, Integer> map2 = new HashMap<>();
+
+        System.out.println(readMap);
+    } catch (Exception a){
+        System.out.println(a);
+    }
+});
+
         GridPane newGameGridPane = new GridPane();
         newGameGridPane.add(nGB1, 0, 0, 1, 1);
         newGameGridPane.add(nGB2, 1, 0, 1, 1);
@@ -1242,6 +875,8 @@ public class Game {
 
         newGameGridPane.add(scoreGridComputer, 3,0);
         newGameGridPane.add(scoreGridUser, 3,1);
+       // newGameGridPane.add(save, 3,2);
+       // newGameGridPane.add(load, 3, 3);
 
         Scene newGameScene = new Scene(newGameGridPane, 900, 500, Color.GREEN);
 
